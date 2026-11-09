@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard | EARENDEL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0a;--panel:#151411;--panel2:#1c1a16;--gold:#c7a568;--text:#f4efe5;--muted:#aaa397;--line:#383329;--red:#d27b70;--green:#9fc39b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif}.top{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:#10100f}.brand{font:700 30px 'Cormorant Garamond',serif;letter-spacing:5px;color:var(--gold)}.top small{color:var(--muted);letter-spacing:2px;font-size:10px}.top button,.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:8px;padding:10px 14px;cursor:pointer}.wrap{width:min(1180px,92%);margin:34px auto}.heading{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.heading h1{font:600 38px 'Cormorant Garamond',serif;margin:0}.gold{color:var(--gold)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:20px}.stat span{display:block;color:var(--muted);font-size:12px}.stat strong{display:block;font:600 34px 'Cormorant Garamond',serif;color:var(--gold);margin-top:7px}.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.panel h2{font:600 26px 'Cormorant Garamond',serif;margin:0 0 18px}.field{margin:13px 0}.field label{display:block;font-size:12px;color:#d4c8b5;margin-bottom:7px}.field input,.field select,.field textarea,.search{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;background:#0c0c0b;color:var(--text);font:14px Inter}.field textarea{min-height:150px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{outline:1px solid var(--gold)}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.primary{background:linear-gradient(110deg,#9b7843,#dfc28a);color:#17120a;border:0;font-weight:700}.danger{color:#f0a39a}.post{padding:14px 0;border-bottom:1px solid var(--line)}.post:last-child{border:0}.post h3{font:600 22px 'Cormorant Garamond',serif;margin:0 0 5px}.meta{color:var(--muted);font-size:11px}.pill{display:inline-block;border:1px solid var(--line);padding:3px 8px;border-radius:30px;margin-left:7px;color:var(--gold);font-size:10px}.post-actions{display:flex;gap:8px;margin-top:10px}.post-actions button{font-size:11px;padding:7px 10px}.notice{font-size:13px;color:var(--muted);min-height:20px;margin-top:10px}.empty{color:var(--muted);font-size:13px;padding:20px 0}.thumb{width:62px;height:62px;object-fit:cover;border-radius:7px;float:right;margin-left:12px}.hidden{display:none!important}@media(max-width:800px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.heading h1{font-size:32px}}@media(max-width:460px){.stats{grid-template-columns:1fr}.top{padding:0 4%}.brand{font-size:24px}}
+</style>
+</head>
+<body>
+<header class="top"><div><div class="brand">EARENDEL</div><small>CONTENT MANAGEMENT</small></div><button id="logout">Log out</button></header>
+<main class="wrap">
+ <div class="heading"><h1>Welcome, <span class="gold">Admin</span></h1><span class="meta">Your literary world, in your hands.</span></div>
+ <section class="stats"><div class="stat"><span>Total posts</span><strong id="totalCount">—</strong></div><div class="stat"><span>Published</span><strong id="publishedCount">—</strong></div><div class="stat"><span>Drafts</span><strong id="draftCount">—</strong></div></section>
+ <div class="layout">
+  <section class="panel">
+   <h2 id="formHeading">Create a new post</h2>
+   <form id="postForm">
+    <input type="hidden" id="postId">
+    <div class="field"><label for="title">Post title *</label><input id="title" maxlength="180" required placeholder="Give your writing a title"></div>
+    <div class="row">
+     <div class="field"><label for="category">Category *</label><select id="category"><option value="Poetry">Poetry</option><option value="Stories">Stories</option><option value="Novels">Novels</option><option value="Quotes">Quotes</option></select></div>
+     <div class="field"><label for="status">Status</label><select id="status"><option value="draft">Save as draft</option><option value="published">Publish</option></select></div>
+    </div>
+    <div class="field"><label for="excerpt">Short description (optional)</label><input id="excerpt" maxlength="300" placeholder="A short introduction"></div>
+    <div class="field"><label for="content">Your writing *</label><textarea id="content" required placeholder="Write your poem, story, novel or quote here…"></textarea></div>
+    <div class="field"><label for="cover">Cover image (optional)</label><input id="cover" type="file" accept="image/png,image/jpeg,image/webp,image/gif"><div class="meta">JPG, PNG, WEBP or GIF · maximum 5 MB</div><div id="imageStatus" class="meta"></div></div>
+    <div class="actions"><button class="btn primary" id="saveBtn" type="submit">Save post</button><button class="btn" id="resetBtn" type="button">Clear</button></div>
+    <p id="formMessage" class="notice" role="status"></p>
+   </form>
+  </section>
+  <section class="panel">
+   <h2>Your posts</h2>
+   <input id="search" class="search" placeholder="Search posts…">
+   <div class="row"><div class="field"><label for="filterCategory">Category</label><select id="filterCategory"><option value="">All categories</option><option>Poetry</option><option>Stories</option><option>Novels</option><option>Quotes</option></select></div><div class="field"><label for="filterStatus">Status</label><select id="filterStatus"><option value="">All statuses</option><option value="published">Published</option><option value="draft">Draft</option></select></div></div>
+   <div id="postsList"><p class="empty">Loading posts…</p></div>
+   <p id="listMessage" class="notice"></p>
+  </section>
+ </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const configured=window.EARENDEL_SUPABASE_URL&&!window.EARENDEL_SUPABASE_URL.includes('PASTE_')&&window.EARENDEL_SUPABASE_ANON_KEY&&!window.EARENDEL_SUPABASE_ANON_KEY.includes('PASTE_');
+if(!configured||!window.supabase){alert('Please configure config.js first.');location.href='admin.html'}
+const db=window.supabase.createClient(window.EARENDEL_SUPABASE_URL,window.EARENDEL_SUPABASE_ANON_KEY);
+let allPosts=[],currentUser=null;
+const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function boot(){
+ const {data:{user},error}=await db.auth.getUser();
+ if(error||!user){location.href='admin.html';return}
+ currentUser=user;
+ const {data:profile,error:pe}=await db.from('profiles').select('is_admin').eq('id',user.id).single();
+ if(pe||!profile?.is_admin){await db.auth.signOut();alert('Admin permission required.');location.href='admin.html';return}
+ await loadPosts();
+}
+async function loadPosts(){
+ $('postsList').innerHTML='<p class="empty">Loading…</p>';
+ const {data,error}=await db.from('posts').select('*').order('created_at',{ascending:false});
+ if(error){$('postsList').innerHTML='<p class="empty">Could not load posts: '+safe(error.message)+'</p>';return}
+ allPosts=data||[];
+ $('totalCount').textContent=allPosts.length;
+ $('publishedCount').textContent=allPosts.filter(p=>p.status==='published').length;
+ $('draftCount').textContent=allPosts.filter(p=>p.status==='draft').length;
+ renderPosts();
+}
+function renderPosts(){
+ const q=$('search').value.toLowerCase(),cat=$('filterCategory').value,st=$('filterStatus').value;
+ const posts=allPosts.filter(p=>(!q||p.title.toLowerCase().includes(q)||p.content.toLowerCase().includes(q))&&(!cat||p.category===cat)&&(!st||p.status===st));
+ if(!posts.length){$('postsList').innerHTML='<p class="empty">No posts found. Create your first post.</p>';return}
+ $('postsList').innerHTML=posts.map(p=>'<article class="post">'+(p.cover_image_url?'<img class="thumb" src="'+safe(p.cover_image_url)+'" alt="">':'')+'<h3>'+safe(p.title)+'</h3><div class="meta">'+safe(p.category)+' <span class="pill">'+safe(p.status)+'</span></div><div class="post-actions"><button class="btn" data-edit="'+p.id+'">Edit</button><button class="btn danger" data-delete="'+p.id+'">Delete</button></div></article>').join('');
+}
+function clearForm(){
+ $('postForm').reset();$('postId').value='';$('formHeading').textContent='Create a new post';$('saveBtn').textContent='Save post';$('imageStatus').textContent='';$('formMessage').textContent='';
+}
+$('postForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('saveBtn').disabled=true;$('formMessage').textContent='Saving…';
+ try{
+  const id=$('postId').value||crypto.randomUUID(),old=allPosts.find(p=>p.id===id);
+  let imageUrl=old?.cover_image_url||null;const file=$('cover').files[0];
+  if(file){
+   if(file.size>5*1024*1024)throw new Error('Image must be 5 MB or smaller.');
+   if(!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type))throw new Error('Please choose JPG, PNG, WEBP or GIF.');
+   const ext=file.name.split('.').pop().toLowerCase(),path=currentUser.id+'/'+id+'/'+Date.now()+'.'+ext;
+   const {error:upErr}=await db.storage.from('earendel-images').upload(path,file,{upsert:true,contentType:file.type});
+   if(upErr)throw upErr;
+   const {data:urlData}=db.storage.from('earendel-images').getPublicUrl(path);imageUrl=urlData.publicUrl;
+  }
+  const title=$('title').value.trim(),status=$('status').value;
+  const payload={id,title,slug:id,category:$('category').value,excerpt:$('excerpt').value.trim()||null,content:$('content').value.trim(),cover_image_url:imageUrl,status,updated_at:new Date().toISOString(),published_at:status==='published'?(old?.published_at||new Date().toISOString()):null};
+  const {error}=await db.from('posts').upsert(payload,{onConflict:'id'});
+  if(error)throw error;
+  $('formMessage').style.color='var(--green)';$('formMessage').textContent=status==='published'?'Post published successfully.':'Draft saved successfully.';
+  clearForm();await loadPosts();
+ }catch(err){$('formMessage').style.color='var(--red)';$('formMessage').textContent=err.message||'Something went wrong.'}
+ finally{$('saveBtn').disabled=false}
+});
+$('postsList').addEventListener('click',async e=>{
+ const edit=e.target.closest('[data-edit]'),del=e.target.closest('[data-delete]');
+ if(edit){const p=allPosts.find(x=>x.id===edit.dataset.edit);if(!p)return;$('postId').value=p.id;$('title').value=p.title;$('category').value=p.category;$('status').value=p.status;$('excerpt').value=p.excerpt||'';$('content').value=p.content;$('formHeading').textContent='Edit post';$('saveBtn').textContent='Update post';$('formMessage').textContent='Editing: '+p.title;window.scrollTo({top:0,behavior:'smooth'})}
+ if(del){const p=allPosts.find(x=>x.id===del.dataset.delete);if(!p||!confirm('Delete "'+p.title+'"? This cannot be undone.'))return;const {error}=await db.from('posts').delete().eq('id',p.id);if(error){$('listMessage').textContent=error.message;return} $('listMessage').textContent='Post deleted.';await loadPosts()}
+});
+$('resetBtn').addEventListener('click',clearForm);
+['search','filterCategory','filterStatus'].forEach(id=>$(id).addEventListener('input',renderPosts));
+$('logout').addEventListener('click',async()=>{await db.auth.signOut();location.href='admin.html'});
+boot();
+</script>
+</body>
+</html>
