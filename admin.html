@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Login | EARENDEL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#090909;--panel:#141311;--gold:#c7a568;--muted:#aaa397;--line:#393329;--white:#f4efe5}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 0%,#282116 0%,#090909 55%);color:var(--white);font-family:Inter, sans-serif}
+.login{width:min(100%,440px);padding:42px;border:1px solid var(--line);border-radius:18px;background:rgba(20,19,17,.94);box-shadow:0 25px 90px #0009}
+.brand{text-align:center;color:var(--gold);font:700 42px 'Cormorant Garamond',serif;letter-spacing:7px}.sub{text-align:center;color:var(--muted);font-size:11px;letter-spacing:4px;margin:4px 0 32px}
+h1{text-align:center;font:600 30px 'Cormorant Garamond',serif;margin:0 0 24px}
+label{display:block;color:#d6cbb8;font-size:12px;margin:16px 0 8px}
+input{width:100%;padding:14px 15px;border-radius:9px;border:1px solid var(--line);background:#0b0b0a;color:white;font-size:14px;outline:none}input:focus{border-color:var(--gold)}
+button{width:100%;margin-top:22px;padding:14px;border:0;border-radius:9px;background:linear-gradient(110deg,#9b7843,#dfc28a);color:#17120a;font-weight:700;cursor:pointer}
+#message{min-height:22px;margin:16px 0 0;text-align:center;color:#e3a18d;font-size:13px}.back{text-align:center;margin-top:22px}.back a{color:var(--gold);font-size:12px;text-decoration:none}
+</style>
+</head>
+<body>
+<main class="login">
+  <div class="brand">EARENDEL</div><div class="sub">LITERARY WORLD</div>
+  <h1>Admin Sign In</h1>
+  <form id="loginForm">
+    <label for="email">Email address</label><input id="email" type="email" autocomplete="username" required>
+    <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required>
+    <button id="submitBtn" type="submit">SIGN IN</button>
+  </form>
+  <p id="message" role="status"></p>
+  <div class="back"><a href="index.html">← Back to website</a></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+const msg=document.getElementById('message'), btn=document.getElementById('submitBtn');
+const ready=window.EARENDEL_SUPABASE_URL && window.EARENDEL_SUPABASE_ANON_KEY && !window.EARENDEL_SUPABASE_URL.includes('PASTE_') && !window.EARENDEL_SUPABASE_ANON_KEY.includes('PASTE_');
+let client;
+if(ready && window.supabase){client=window.supabase.createClient(window.EARENDEL_SUPABASE_URL,window.EARENDEL_SUPABASE_ANON_KEY)}
+else{msg.textContent='Setup needed: add your Supabase URL and Publishable key in config.js.';btn.disabled=true}
+document.getElementById('loginForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!client)return;msg.style.color='#e3a18d';msg.textContent='Signing in…';btn.disabled=true;
+ const {data,error}=await client.auth.signInWithPassword({email:document.getElementById('email').value.trim(),password:document.getElementById('password').value});
+ if(error){msg.textContent=error.message;btn.disabled=false;return}
+ const {data:profile,error:profileError}=await client.from('profiles').select('is_admin').eq('id',data.user.id).single();
+ if(profileError||!profile?.is_admin){await client.auth.signOut();msg.textContent='This account does not have admin permission.';btn.disabled=false;return}
+ location.href='dashboard.html';
+});
+</script>
+</body>
+</html>
