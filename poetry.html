@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>Poetry — EARENDEL</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#080808;
+  --panel:#11100e;
+  --gold:#c8a45d;
+  --light:#ead5a0;
+  --text:#eee7d9;
+  --muted:#a59d90;
+  --line:rgba(200,164,93,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Noto Serif Bengali',serif;
+}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+.container{width:min(1120px,90%);margin:auto}
+.eyebrow{color:var(--gold);font-size:10px;letter-spacing:4px}
+.gold{color:var(--gold)}
+
+/* NAV */
+header{
+  position:sticky;top:0;z-index:20;
+  background:rgba(8,8,8,.94);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+}
+.navbar{
+  min-height:80px;display:flex;
+  justify-content:space-between;align-items:center;
+  gap:20px;
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:34px;letter-spacing:6px;
+  color:var(--light);font-weight:600;
+}
+.nav-links{display:flex;align-items:center;gap:23px}
+.nav-links a{font-size:11px;color:#c1b9aa;transition:.3s}
+.nav-links a:hover,.nav-links .active{color:var(--gold)}
+.nav-links .contact{
+  border:1px solid var(--gold);
+  padding:10px 16px;color:var(--gold);
+}
+.menu{
+  display:none;background:none;color:var(--gold);
+  border:1px solid var(--line);padding:8px 12px;
+  font-size:20px;cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  position:relative;overflow:hidden;
+  padding:105px 0 90px;
+  border-bottom:1px solid var(--line);
+  background:radial-gradient(ellipse at 80% 40%,rgba(177,131,52,.13),transparent 45%);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.2fr .8fr;
+  align-items:center;gap:50px;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(75px,11vw,125px);
+  font-weight:400;line-height:.85;
+  margin:25px 0;
+}
+.hero h1 span{color:var(--gold);font-style:italic}
+.hero p{
+  color:var(--muted);font-size:13px;
+  line-height:2.2;max-width:540px;
+}
+.hero-art{
+  height:330px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero-art::before{
+  content:"";position:absolute;
+  width:290px;height:290px;border-radius:50%;
+  border:1px solid var(--line);
+  box-shadow:0 0 70px rgba(200,164,93,.09);
+}
+.hero-art img{
+  position:relative;width:205px;height:270px;
+  object-fit:cover;filter:brightness(.72) sepia(.2);
+  border:1px solid var(--gold);
+  padding:6px;background:#17130d;
+  transform:rotate(5deg);
+  box-shadow:20px 25px 60px #000;
+  transition:.5s;
+}
+.hero-art img:hover{transform:rotate(0) translateY(-8px)}
+.art-note{
+  position:absolute;bottom:0;right:0;
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-style:italic;color:var(--gold);
+}
+
+/* FEATURED */
+.featured{padding:75px 0}
+.featured-box{
+  display:grid;grid-template-columns:1fr 1.1fr;
+  background:linear-gradient(120deg,#17130d,#0e0d0b);
+  border:1px solid var(--line);
+  min-height:340px;
+}
+.featured-image{min-height:340px;overflow:hidden}
+.featured-image img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.65) sepia(.25);
+  transition:.7s;
+}
+.featured-box:hover img{transform:scale(1.05)}
+.featured-copy{
+  padding:45px;display:flex;
+  flex-direction:column;justify-content:center;
+}
+.featured-copy h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:46px;font-weight:400;margin:15px 0;
+}
+.featured-copy p{
+  color:var(--muted);font-size:13px;line-height:2.2;
+}
+.read-featured{
+  display:inline-block;margin-top:25px;
+  color:var(--gold);font-size:11px;
+  border-bottom:1px solid var(--gold);
+  padding-bottom:8px;width:max-content;
+  cursor:pointer;
+}
+
+/* COLLECTION */
+.library{padding:70px 0 110px}
+.section-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(43px,6vw,65px);
+  font-weight:400;margin-top:10px;
+}
+.section-desc{
+  color:var(--muted);font-size:12px;
+  line-height:2;margin-top:12px;
+}
+.toolbar{
+  margin:35px 0 28px;
+  display:flex;justify-content:space-between;
+  gap:15px;flex-wrap:wrap;
+}
+.search{
+  flex:1;min-width:220px;
+  background:#11100e;border:1px solid var(--line);
+  padding:14px 17px;color:var(--text);
+  outline:none;font-size:12px;
+}
+.search:focus{border-color:var(--gold)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter{
+  background:transparent;color:var(--muted);
+  border:1px solid var(--line);
+  padding:12px 16px;font-size:10px;
+  cursor:pointer;transition:.3s;
+}
+.filter:hover,.filter.active{
+  background:var(--gold);color:#080808;
+  border-color:var(--gold);
+}
+.poetry-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.poem-card{
+  position:relative;min-height:270px;
+  padding:27px;background:var(--panel);
+  border:1px solid var(--line);
+  display:flex;flex-direction:column;
+  transition:.4s;overflow:hidden;
+}
+.poem-card::before{
+  content:"";position:absolute;
+  width:130px;height:130px;border-radius:50%;
+  background:rgba(200,164,93,.045);
+  right:-55px;top:-55px;transition:.5s;
+}
+.poem-card:hover{
+  transform:translateY(-7px);
+  border-color:var(--gold);
+}
+.poem-card:hover::before{transform:scale(2)}
+.poem-number{
+  color:var(--gold);font-family:'Cormorant Garamond',serif;
+  font-size:20px;
+}
+.poem-category{
+  color:var(--gold);font-size:9px;
+  letter-spacing:2px;margin-top:20px;
+}
+.poem-card h3{
+  font-size:19px;font-weight:500;
+  margin:13px 0;
+}
+.poem-preview{
+  color:var(--muted);font-size:12px;
+  line-height:2;flex:1;
+}
+.poem-bottom{
+  display:flex;justify-content:space-between;
+  align-items:center;margin-top:22px;
+  border-top:1px solid var(--line);padding-top:15px;
+}
+.poem-bottom span{font-size:10px;color:var(--muted)}
+.read-btn{
+  background:none;border:none;
+  color:var(--gold);font-size:11px;cursor:pointer;
+}
+.empty{
+  display:none;text-align:center;
+  padding:55px 15px;color:var(--muted);
+  grid-column:1/-1;
+}
+
+/* MODAL */
+.modal{
+  display:none;position:fixed;inset:0;
+  z-index:50;background:rgba(0,0,0,.88);
+  backdrop-filter:blur(9px);
+  padding:20px;align-items:center;justify-content:center;
+}
+.modal.show{display:flex}
+.modal-content{
+  position:relative;width:min(650px,100%);
+  max-height:85vh;overflow:auto;
+  background:#11100e;border:1px solid var(--gold);
+  padding:45px;
+  animation:modalIn .35s ease;
+}
+@keyframes modalIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.close{
+  position:absolute;right:18px;top:15px;
+  background:none;border:0;color:var(--gold);
+  font-size:25px;cursor:pointer;
+}
+.modal-content h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;font-weight:400;
+  color:var(--gold);margin:12px 0 25px;
+}
+.modal-poem{
+  white-space:pre-line;
+  color:var(--ivory);font-size:15px;
+  line-height:2.5;
+}
+.modal-footer{
+  margin-top:30px;padding-top:20px;
+  border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;
+  gap:15px;flex-wrap:wrap;
+}
+.modal-footer span{color:var(--muted);font-size:10px}
+.copy-btn{
+  background:transparent;border:1px solid var(--gold);
+  color:var(--gold);padding:9px 14px;
+  font-size:10px;cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  background:#050505;border-top:1px solid var(--line);
+  padding:40px 0 22px;
+}
+.footer-top{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:20px;flex-wrap:wrap;
+  padding-bottom:25px;
+}
+.footer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;letter-spacing:5px;color:var(--gold);
+}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{font-size:10px;color:var(--muted)}
+.footer-links a:hover{color:var(--gold)}
+.copyright{
+  border-top:1px solid var(--line);
+  padding-top:20px;text-align:center;
+  color:#777064;font-size:10px;
+}
+
+/* REVEAL */
+.reveal{
+  opacity:0;transform:translateY(25px);
+  transition:.8s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:850px){
+  .nav-links{gap:12px}
+  .nav-links a{font-size:10px}
+  .poetry-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+  .navbar{min-height:72px}
+  .logo{font-size:28px}
+  .menu{display:block}
+  .nav-links{
+    display:none;position:absolute;top:72px;
+    left:0;right:0;background:#0b0a08;
+    padding:15px 5%;flex-direction:column;
+    align-items:stretch;gap:0;
+  }
+  .nav-links.show{display:flex}
+  .nav-links a{
+    padding:13px 0;border-bottom:1px solid var(--line);
+  }
+  .nav-links .contact{margin-top:10px;text-align:center}
+  .hero{padding:75px 0 45px}
+  .hero-grid{grid-template-columns:1fr;gap:15px}
+  .hero h1{font-size:92px}
+  .hero-art{height:300px}
+  .featured-box{grid-template-columns:1fr}
+  .featured-image{min-height:220px;height:220px}
+  .featured-copy{padding:28px}
+  .featured-copy h2{font-size:38px}
+  .poetry-grid{grid-template-columns:1fr}
+  .modal-content{padding:35px 23px}
+  .modal-content h2{font-size:35px}
+  .modal-poem{font-size:13px}
+  .footer-top{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+    <a href="index.html" class="logo">EARENDEL</a>
+    <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="poetry.html" class="active">Poetry</a>
+      <a href="stories.html">Stories</a>
+      <a href="novels.html">Novels</a>
+      <a href="quotes.html">Quotes</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="contact">Contact ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow">THE LANGUAGE OF THE SOUL</div>
+      <h1>Poetry<br><span>& Feelings.</span></h1>
+      <p>
+        কিছু কথা বলা যায় না, শুধু অনুভব করা যায়।
+        কিছু অনুভূতি শব্দ খুঁজে পায় কবিতার পাতায়।
+        EARENDEL-এর কবিতার জগতে তোমাকে স্বাগতম।
+      </p>
+    </div>
+
+    <div class="hero-art reveal">
+      <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=700" alt="Writing poetry">
+      <div class="art-note">Words that touch the soul...</div>
+    </div>
+  </div>
+</section>
+
+<section class="featured">
+  <div class="container">
+    <div class="eyebrow" style="margin-bottom:20px">EDITOR'S PICK</div>
+    <div class="featured-box reveal">
+      <div class="featured-image">
+        <img src="https://images.unsplash.com/photo-1474932430478-367dbb6832c1?w=900" alt="A quiet literary scene">
+      </div>
+      <div class="featured-copy">
+        <div class="eyebrow">A POEM FOR THE HEART</div>
+        <h2>নীরবতারও <span class="gold">ভাষা আছে।</span></h2>
+        <p>
+          সব অনুভূতির প্রকাশ শব্দে হয় না।
+          কখনো কখনো নীরবতাই বলে দেয়
+          হৃদয়ের সবচেয়ে গভীর কথাগুলো।
+        </p>
+        <button class="read-featured" id="featuredRead">READ THE POEM ↗</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="library" id="library">
+  <div class="container">
+    <div class="eyebrow">THE POETRY ARCHIVE</div>
+    <h2 class="section-heading">A Library of <span class="gold">Feelings.</span></h2>
+    <p class="section-desc">
+      প্রতিটি কবিতা একেকটি অনুভূতির দরজা।
+      খুঁজে নাও তোমার মনের সঙ্গে মিলে যাওয়া শব্দগুলো।
+    </p>
+
+    <div class="toolbar">
+      <input class="search" id="search" type="search" placeholder="কবিতার নাম বা শব্দ দিয়ে খুঁজুন...">
+      <div class="filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="love">Love</button>
+        <button class="filter" data-filter="sad">Sadness</button>
+        <button class="filter" data-filter="life">Life</button>
+        <button class="filter" data-filter="nature">Nature</button>
+      </div>
+    </div>
+
+    <div class="poetry-grid" id="poetryGrid">
+
+      <article class="poem-card reveal" data-category="sad" data-title="নীরব অপেক্ষা">
+        <div class="poem-number">01</div>
+        <div class="poem-category">SADNESS</div>
+        <h3>নীরব অপেক্ষা</h3>
+        <p class="poem-preview">কিছু অপেক্ষা শেষ হয় না, শুধু মানুষ অপেক্ষা করতে করতে বদলে যায়...</p>
+        <div class="poem-bottom">
+          <span>একটি নীরব অনুভূতি</span>
+          <button class="read-btn" data-poem="0">READ ↗</button>
+        </div>
+      </article>
+
+      <article class="poem-card reveal" data-category="love" data-title="তোমার শহর">
+        <div class="poem-number">02</div>
+        <div class="poem-category">LOVE</div>
+        <h3>তোমার শহর</h3>
+        <p class="poem-preview">তোমার শহরে আজও বৃষ্টি নামে, শুধু আমার ফেরার পথটি হারিয়ে গেছে...</p>
+        <div class="poem-bottom">
+          <span>ভালোবাসার গল্প</span>
+          <button class="read-btn" data-poem="1">READ ↗</button>
+        </div>
+      </article>
+
+      <article class="poem-card reveal" data-category="life" data-title="জীবনের খাতা">
+        <div class="poem-number">03</div>
+        <div class="poem-category">LIFE</div>
+        <h3>জীবনের খাতা</h3>
+        <p class="poem-preview">জীবন কখনো প্রশ্ন করে, কখনো উত্তর না দিয়েই সামনে এগিয়ে যায়...</p>
+        <div class="poem-bottom">
+          <span>জীবনের কিছু কথা</span>
+          <button class="read-btn" data-poem="2">READ ↗</button>
+        </div>
+      </article>
+
+      <article class="poem-card reveal" data-category="sad" data-title="শেষ চিঠি">
+        <div class="poem-number">04</div>
+        <div class="poem-category">SADNESS</div>
+        <h3>শেষ চিঠি</h3>
+        <p class="poem-preview">যে কথাগুলো বলা হয়নি, সেগুলোই রয়ে গেল শেষ চিঠির পাতায়...</p>
+        <div class="poem-bottom">
+          <span>অপ্রকাশিত অনুভূতি</span>
+          <button class="read-btn" data-poem="3">READ ↗</button>
+        </div>
+      </article>
+
+      <article class="poem-card reveal" data-category="nature" data-title="বৃষ্টির দিন">
+        <div class="poem-number">05</div>
+        <div class="poem-category">NATURE</div>
+        <h3>বৃষ্টির দিন</h3>
+        <p class="poem-preview">জানালার কাঁচে বৃষ্টিরা লেখে, হারিয়ে যাওয়া দিনের নাম...</p>
+        <div class="poem-bottom">
+          <span>প্রকৃতির কবিতা</span>
+          <button class="read-btn" data-poem="4">READ ↗</button>
+        </div>
+      </article>
+
+      <article class="poem-card reveal" data-category="love" data-title="একটুখানি তুমি">
+        <div class="poem-number">06</div>
+        <div class="poem-category">LOVE</div>
+        <h3>একটুখানি তুমি</h3>
+        <p class="poem-preview">দিনের শেষে আমার চাওয়া, একটুখানি তোমার খবর...</p>
+        <div class="poem-bottom">
+          <span>ভালোবাসার অনুভব</span>
+          <button class="read-btn" data-poem="5">READ ↗</button>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="empty" id="empty">কোনো কবিতা পাওয়া যায়নি। অন্য শব্দ দিয়ে খুঁজে দেখো।</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <a href="index.html" class="footer-logo">EARENDEL</a>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="stories.html">Stories</a>
+        <a href="novels.html">Novels</a>
+        <a href="quotes.html">Quotes</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 EARENDEL — A World Beyond Words.</div>
+  </div>
+</footer>
+
+<!-- READING MODAL -->
+<div class="modal" id="poemModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-content">
+    <button class="close" id="closeModal" aria-label="Close">×</button>
+    <div class="eyebrow">EARENDEL POETRY COLLECTION</div>
+    <h2 id="modalTitle"></h2>
+    <div class="modal-poem" id="modalPoem"></div>
+    <div class="modal-footer">
+      <span>A WORLD BEYOND WORDS</span>
+      <button class="copy-btn" id="copyPoem">COPY POEM</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const poems = [
+  {
+    title:"নীরব অপেক্ষা",
+    category:"SADNESS",
+    text:`কিছু অপেক্ষা শেষ হয় না,
+শুধু মানুষ অপেক্ষা করতে করতে বদলে যায়।
+
+কিছু পথের শেষ জানা থাকে,
+তবুও পা থামাতে ইচ্ছে করে না।
+
+কেউ ফিরে আসবে ভেবে নয়,
+কখনো কখনো অপেক্ষা করি
+শুধু স্মৃতিগুলোকে একটু সময় দিতে।`
+  },
+  {
+    title:"তোমার শহর",
+    category:"LOVE",
+    text:`তোমার শহরে আজও বৃষ্টি নামে,
+জানালায় জমে পুরোনো বিকেল।
+
+রাস্তার মোড়ে চায়ের দোকান আছে,
+শুধু নেই তোমার সঙ্গে কাটানো সময়।
+
+আমি এখনো সেই শহর চিনি,
+শুধু নিজের ফেরার পথটি
+কোথায় যেন হারিয়ে ফেলেছি।`
+  },
+  {
+    title:"জীবনের খাতা",
+    category:"LIFE",
+    text:`জীবনের খাতায় কত হিসাব,
+কিছু মেলে, কিছু মেলে না।
+
+কিছু মানুষ আসে শেখাতে,
+কিছু মানুষ আসে ভুলিয়ে দিতে।
+
+শেষ পর্যন্ত বুঝি,
+সব প্রশ্নের উত্তর নয়,
+কিছু প্রশ্ন নিয়েই বাঁচতে হয়।`
+  },
+  {
+    title:"শেষ চিঠি",
+    category:"SADNESS",
+    text:`তোমাকে লেখা শেষ চিঠিতে
+কোনো অভিযোগ রাখিনি।
+
+শুধু লিখেছি,
+ভালো থেকো সেই পৃথিবীতে,
+যেখানে আমার আর কোনো ঠিকানা নেই।
+
+কিছু বিদায় শব্দহীন হয়,
+তবুও তার প্রতিধ্বনি
+অনেক দূর পর্যন্ত শোনা যায়।`
+  },
+  {
+    title:"বৃষ্টির দিন",
+    category:"NATURE",
+    text:`জানালার কাঁচে বৃষ্টিরা লেখে
+হারিয়ে যাওয়া দিনের নাম।
+
+আকাশজুড়ে মেঘের ভিড়ে
+মনে পড়ে যায় পুরোনো বিকেল।
+
+প্রকৃতি জানে,
+কীভাবে নীরব থেকেও
+একটি মন ভালো করে দিতে হয়।`
+  },
+  {
+    title:"একটুখানি তুমি",
+    category:"LOVE",
+    text:`দিনের শেষে আমার চাওয়া
+একটুখানি তোমার খবর।
+
+ব্যস্ত পৃথিবীর হাজার শব্দে
+শুনি শুধু তোমার স্বর।
+
+ভালোবাসা হয়তো এমনই,
+অল্প কিছু মুহূর্তের মাঝেও
+একটি পৃথিবী খুঁজে পাওয়া।`
+  }
+];
+
+const modal = document.getElementById("poemModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalPoem = document.getElementById("modalPoem");
+const copyButton = document.getElementById("copyPoem");
+
+let currentPoem = null;
+
+function openPoem(index){
+  const poem = poems[index];
+  if(!poem) return;
+  currentPoem = poem;
+  modalTitle.textContent = poem.title;
+  modalPoem.textContent = poem.text;
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+  document.getElementById("closeModal").focus();
+}
+
+function closePoem(){
+  modal.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+document.querySelectorAll("[data-poem]").forEach(button=>{
+  button.addEventListener("click",()=>{
+    openPoem(Number(button.dataset.poem));
+  });
+});
+
+document.getElementById("featuredRead").addEventListener("click",()=>{
+  openPoem(0);
+});
+
+document.getElementById("closeModal").addEventListener("click",closePoem);
+
+modal.addEventListener("click",e=>{
+  if(e.target === modal) closePoem();
+});
+
+document.addEventListener("keydown",e=>{
+  if(e.key === "Escape") closePoem();
+});
+
+copyButton.addEventListener("click",async()=>{
+  if(!currentPoem) return;
+  try{
+    await navigator.clipboard.writeText(
+      currentPoem.title + "\n\n" + currentPoem.text
+    );
+    copyButton.textContent = "COPIED ✓";
+  }catch(error){
+    copyButton.textContent = "COPY NOT AVAILABLE";
+  }
+  setTimeout(()=>copyButton.textContent="COPY POEM",1800);
+});
+
+// SEARCH + CATEGORY FILTER
+const search = document.getElementById("search");
+const filterButtons = document.querySelectorAll(".filter");
+const cards = document.querySelectorAll(".poem-card");
+const empty = document.getElementById("empty");
+let activeFilter = "all";
+
+function filterPoems(){
+  const query = search.value.trim().toLowerCase();
+  let visible = 0;
+
+  cards.forEach(card=>{
+    const matchesCategory =
+      activeFilter === "all" || card.dataset.category === activeFilter;
+    const matchesSearch =
+      card.innerText.toLowerCase().includes(query);
+
+    const show = matchesCategory && matchesSearch;
+    card.style.display = show ? "flex" : "none";
+    if(show) visible++;
+  });
+
+  empty.style.display = visible ? "none" : "block";
+}
+
+search.addEventListener("input",filterPoems);
+
+filterButtons.forEach(button=>{
+  button.addEventListener("click",()=>{
+    filterButtons.forEach(b=>b.classList.remove("active"));
+    button.classList.add("active");
+    activeFilter = button.dataset.filter;
+    filterPoems();
+  });
+});
+
+// MOBILE MENU
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click",()=>{
+  navLinks.classList.toggle("show");
+  menuBtn.textContent =
+    navLinks.classList.contains("show") ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    navLinks.classList.remove("show");
+    menuBtn.textContent="☰";
+  });
+});
+
+// SCROLL REVEAL
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.1});
+
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
