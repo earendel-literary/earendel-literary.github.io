@@ -388,22 +388,22 @@ footer{background:#050505;padding:40px 0 22px}
         তোমার মনের কথাগুলো লিখে পাঠানোর জন্য নিচের ফর্মটি ব্যবহার করো।
       </p>
 
-      <form id="contactForm">
+      <form id="contactForm">\n        <input type="hidden" name="_subject" value="New message from EARENDEL Contact Page">
         <div class="form-row">
           <div class="field">
             <label for="name">YOUR NAME</label>
-            <input type="text" id="name" placeholder="তোমার নাম" required>
+            <input type="text" id="name" name="name" placeholder="তোমার নাম" required>
           </div>
 
           <div class="field">
             <label for="email">EMAIL ADDRESS</label>
-            <input type="email" id="email" placeholder="তোমার ইমেইল" required>
+            <input type="email" id="email" name="email" placeholder="তোমার ইমেইল" required>
           </div>
         </div>
 
         <div class="field">
           <label for="subject">SUBJECT</label>
-          <select id="subject" required>
+          <select id="subject" name="subject" required>
             <option value="">একটি বিষয় বেছে নাও</option>
             <option>General Inquiry</option>
             <option>Literary Collaboration</option>
@@ -415,12 +415,12 @@ footer{background:#050505;padding:40px 0 22px}
 
         <div class="field">
           <label for="message">YOUR MESSAGE</label>
-          <textarea id="message" placeholder="এখানে তোমার কথাগুলো লিখো..." required></textarea>
+          <textarea id="message" name="message" placeholder="এখানে তোমার কথাগুলো লিখো..." required></textarea>
         </div>
 
         <button type="submit" class="submit-btn">SEND MESSAGE ↗</button>
 
-        <p class="form-note">
+        <p class="form-note" id="formStatus" aria-live="polite">
           * এই ফর্মটি বর্তমানে Demo Mode-এ আছে।
           অনলাইনে বার্তা পাঠাতে Email বা Form Backend সংযুক্ত করতে হবে।
         </p>
@@ -475,11 +475,44 @@ navLinks.querySelectorAll("a").forEach(link=>{
   });
 });
 
-// DEMO FORM
-document.getElementById("contactForm").addEventListener("submit",function(e){
+// LIVE CONTACT FORM — FormSubmit
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
+const submitButton = contactForm.querySelector(".submit-btn");
+
+contactForm.addEventListener("submit", async function(e){
   e.preventDefault();
-  alert("ধন্যবাদ! তোমার ফর্মটি Demo Mode-এ পরীক্ষা করা হয়েছে। বার্তা পাঠানোর ব্যবস্থা এখনও সংযুক্ত করা হয়নি।");
-  this.reset();
+
+  const originalButtonText = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = "SENDING...";
+  formStatus.textContent = "তোমার বার্তাটি পাঠানো হচ্ছে...";
+
+  try {
+    const formData = new FormData(contactForm);
+    const response = await fetch("https://formsubmit.co/ajax/nayeembd014@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(Object.fromEntries(formData.entries()))
+    });
+
+    const result = await response.json();
+
+    if (response.ok && String(result.success).toLowerCase() === "true") {
+      formStatus.textContent = "ধন্যবাদ! তোমার বার্তা সফলভাবে পাঠানো হয়েছে।";
+      contactForm.reset();
+    } else {
+      throw new Error(result.message || "বার্তা পাঠানো যায়নি।");
+    }
+  } catch (error) {
+    formStatus.textContent = "দুঃখিত, এই মুহূর্তে বার্তা পাঠানো যায়নি। একটু পরে আবার চেষ্টা করো।";
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = originalButtonText;
+  }
 });
 
 // SCROLL REVEAL
