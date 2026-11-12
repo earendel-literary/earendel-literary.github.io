@@ -125,6 +125,40 @@ footer{background:#050505;border-top:1px solid var(--line);padding:48px 0 23px}
 @media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-grid{grid-template-columns:1fr .8fr}.hero-art{transform:scale(.9)}}
 @media(max-width:700px){.navbar{min-height:70px}.logo{font-size:28px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:rgba(8,8,8,.98);padding:12px 6%;flex-direction:column;align-items:stretch;gap:0;border-bottom:1px solid var(--line)}.nav-links.show{display:flex}.nav-links a{padding:13px 0;border-bottom:1px solid var(--line)}.nav-cta{margin-top:10px;text-align:center}.hero{min-height:unset}.hero-grid{grid-template-columns:1fr;padding:65px 0 45px;gap:10px}.hero h1{font-size:70px}.hero-art{min-height:300px;transform:none}.hero-book{width:175px;height:245px}.orbit{width:280px;height:280px}.floating-note{right:3%}.stats-grid{padding:20px 0}.stat strong{font-size:27px}.stat span{font-size:9px}.library{padding:75px 0}.section-top{display:block}.section-intro{margin-top:15px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.cover{height:205px}.cover-placeholder{width:120px;height:170px}.card-body h3{font-size:15px}.card-foot{align-items:flex-start;flex-direction:column}.read{width:100%}.reader{grid-template-columns:1fr}.reader-side{display:grid;grid-template-columns:95px 1fr;gap:15px;align-items:center;padding:18px 58px 18px 18px;border-right:0;border-bottom:1px solid var(--line)}.reader-cover{height:125px;margin:0}.reader-side h2{font-size:23px}.reader-main{padding:25px 20px}.reader-main h3{font-size:28px}.chapter-content{font-size:13px;line-height:2.2}}
 @media(max-width:390px){.grid{grid-template-columns:1fr}.cover{height:260px}.cover-placeholder{width:155px;height:220px}.hero h1{font-size:60px}.stats-grid{grid-template-columns:1fr;gap:15px}.stat{border-right:0;border-bottom:1px solid var(--line);padding-bottom:12px}.stat:last-child{border:0}}
+
+/* PREMIUM 3D EDITION */
+.hero{isolation:isolate}
+.hero-grid{perspective:1400px}
+.hero-art{perspective:1200px;transform-style:preserve-3d}
+.orbit{transform:rotateX(68deg) rotateZ(-18deg);box-shadow:0 0 55px rgba(200,164,93,.08),inset 0 0 45px rgba(200,164,93,.035);animation:orbitFloat 12s ease-in-out infinite}
+@keyframes orbitFloat{0%,100%{transform:rotateX(68deg) rotateZ(-18deg) translateY(0)}50%{transform:rotateX(68deg) rotateZ(-8deg) translateY(-12px)}}
+.hero-book{transform-style:preserve-3d;transform:rotateY(-22deg) rotateX(5deg) rotateZ(-7deg);border-radius:3px 7px 7px 3px;box-shadow:28px 34px 55px rgba(0,0,0,.72),-7px 0 12px rgba(0,0,0,.55),inset 5px 0 8px rgba(255,255,255,.08);will-change:transform}
+.hero-book:before{content:"";position:absolute;z-index:-1;left:-15px;top:3px;width:15px;height:calc(100% - 6px);background:linear-gradient(90deg,#171109,#8b7040 38%,#302315);transform:rotateY(-90deg);transform-origin:right center;border:1px solid rgba(234,213,160,.25)}
+.hero-book:after{content:"";position:absolute;z-index:-1;right:-9px;top:5px;width:9px;height:calc(100% - 10px);background:repeating-linear-gradient(0deg,#d5c49e 0 2px,#a99570 2px 3px);transform:translateZ(-5px)}
+.hero-book-inner{transform:translateZ(5px);box-shadow:inset 0 0 28px rgba(0,0,0,.3)}
+.hero-book:hover{transform:rotateY(-8deg) rotateX(2deg) rotateZ(-2deg) translateY(-12px) translateZ(22px)}
+.hero-art:after{content:"";position:absolute;bottom:7%;width:245px;height:35px;border-radius:50%;background:rgba(0,0,0,.65);filter:blur(20px);transform:rotate(-7deg);z-index:-1}
+.book-card{perspective:1100px;transform-style:preserve-3d;will-change:transform;transition:transform .18s ease,border-color .4s,box-shadow .4s}
+.book-card:after{content:"";position:absolute;left:15px;right:15px;bottom:-9px;height:15px;background:rgba(0,0,0,.55);filter:blur(13px);z-index:-1;transition:.3s}
+.book-card:hover:after{filter:blur(18px);opacity:.9}
+.cover{transform:translateZ(12px);transform-style:preserve-3d;box-shadow:inset 0 0 35px rgba(0,0,0,.4),0 12px 24px rgba(0,0,0,.22)}
+.cover-placeholder{transform:rotateY(-9deg) rotateX(2deg) translateZ(18px);border-radius:2px 5px 5px 2px;box-shadow:13px 18px 25px rgba(0,0,0,.65),-4px 0 5px rgba(0,0,0,.4);transition:transform .5s}
+.book-card:hover .cover-placeholder{transform:rotateY(-2deg) rotateX(0) translateZ(28px) translateY(-4px)}
+.card-body{transform:translateZ(8px)}
+.book-card:hover .card-body h3{color:var(--gold2)}
+.btn,.read,.chapter-btn{position:relative;overflow:hidden}
+.btn:after,.read:after{content:"";position:absolute;top:-120%;left:-35%;width:35%;height:350%;transform:rotate(25deg);background:rgba(255,255,255,.17);transition:left .6s}
+.btn:hover:after,.read:hover:after{left:130%}
+.stats{box-shadow:0 12px 35px rgba(0,0,0,.25)}
+.stat{transition:transform .3s}.stat:hover{transform:translateY(-4px)}
+.reader{perspective:1300px;transform-style:preserve-3d}
+.reader-side{box-shadow:inset -15px 0 25px rgba(0,0,0,.18)}
+.reader-cover{transform:perspective(800px) rotateY(-5deg);box-shadow:14px 18px 30px rgba(0,0,0,.55)}
+.chapter-content{animation:pageIn .35s ease}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){.hero-book{transform:rotateY(-12deg) rotateX(3deg) rotateZ(-5deg)}.hero-book:hover{transform:rotateY(-8deg) rotateZ(-2deg) translateY(-5px)}.book-card{transform:none!important}.book-card:after{display:none}.cover-placeholder{transform:rotateY(-5deg) translateZ(8px)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
 </style>
 </head>
 <body>
@@ -221,6 +255,23 @@ footer{background:#050505;border-top:1px solid var(--line);padding:48px 0 23px}
  init();
 })();
 </script>
+
+<script>
+(function(){
+ const cards=document.getElementById('bookGrid');
+ if(!cards||!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+ cards.addEventListener('pointermove',function(e){
+  const card=e.target.closest('.book-card');if(!card)return;
+  const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+  card.style.transform='perspective(1100px) rotateX('+((.5-y)*7)+'deg) rotateY('+((x-.5)*8)+'deg) translateY(-7px)';
+  card.style.setProperty('--shine-x',(x*100)+'%');
+ });
+ cards.addEventListener('pointerout',function(e){
+  const card=e.target.closest('.book-card');if(card&&!card.contains(e.relatedTarget))card.style.transform='';
+ });
+})();
+</script>
+
 <script src="public-posts.js"></script>
 </body>
 </html>
