@@ -681,8 +681,34 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
  if(!dbReady){grid.innerHTML='<p style="color:var(--muted)">The book library is temporarily unavailable.</p>';return;}
  const db=window.supabase.createClient(window.EARENDEL_SUPABASE_URL,window.EARENDEL_SUPABASE_ANON_KEY);
  const {data:books,error}=await db.from('books').select('id,title,slug,author,description,cover_image_url,created_at').eq('status','published').order('created_at',{ascending:false});
- if(error){console.error('Could not load EARENDEL books:',error.message);grid.innerHTML='<p style="color:var(--muted)">বইগুলো এখন লোড করা যাচ্ছে না। পরে আবার চেষ্টা করো।</p>';return;}
- if(!books||!books.length){grid.innerHTML='<p style="color:var(--muted);padding:25px 0">এখনো কোনো বই প্রকাশিত হয়নি। নতুন বই শিগগিরই যুক্ত হবে।</p>';if(empty)empty.style.display='none';return;}
+ if(error){console.error('Could not load EARENDEL books:',error.message);renderOnlineCatalogue();return;}
+ if(!books||!books.length){renderOnlineCatalogue();return;}
+ function renderOnlineCatalogue(){
+  const catalogue=[
+   {title:'অপেক্ষা',author:'হুমায়ূন আহমেদ',desc:'অপেক্ষা, জীবন ও মানুষের রহস্যময় চক্র নিয়ে হুমায়ূন আহমেদের উপন্যাস।',cover:'https://baatighar.com/web/image/product.template/58584/image_1920?unique=b93083d',url:'https://baatighar.com/shop/9847016600173-58584'},
+   {title:'নন্দিত নরকে',author:'হুমায়ূন আহমেদ',desc:'হুমায়ূন আহমেদের বহুল পরিচিত সাহিত্যকর্ম।',url:'https://www.google.com/search?q=নন্দিত+নরকে+হুমায়ূন+আহমেদ+বই'},
+   {title:'শঙ্খনীল কারাগার',author:'হুমায়ূন আহমেদ',desc:'পারিবারিক সম্পর্ক ও জীবনের অনুভূতি ঘিরে একটি পরিচিত উপন্যাস।',url:'https://www.google.com/search?q=শঙ্খনীল+কারাগার+হুমায়ূন+আহমেদ+বই'},
+   {title:'দেবদাস',author:'শরৎচন্দ্র চট্টোপাধ্যায়',desc:'বাংলা সাহিত্যের বহুলপঠিত প্রেমের উপন্যাস।',url:'https://www.google.com/search?q=দেবদাস+শরৎচন্দ্র+বই'},
+   {title:'চোখের বালি',author:'রবীন্দ্রনাথ ঠাকুর',desc:'সম্পর্ক, আকাঙ্ক্ষা ও সমাজজীবনের টানাপোড়েন নিয়ে উপন্যাস।',url:'https://www.google.com/search?q=চোখের+বালি+রবীন্দ্রনাথ+বই'},
+   {title:'শ্রীকান্ত',author:'শরৎচন্দ্র চট্টোপাধ্যায়',desc:'ভ্রমণ, অভিজ্ঞতা ও মানুষের বিচিত্র জীবনের কাহিনি।',url:'https://www.google.com/search?q=শ্রীকান্ত+শরৎচন্দ্র+বই'}
+  ];
+  grid.innerHTML='';
+  catalogue.forEach((book,index)=>{
+   const card=document.createElement('article');card.className='book-card';
+   const visual=document.createElement('div');visual.className='book-visual';
+   if(book.cover){const img=document.createElement('img');img.src=book.cover;img.alt=book.title+' প্রচ্ছদ';img.loading='lazy';img.style.cssText='width:100%;height:100%;object-fit:contain';visual.appendChild(img);}
+   else {const cover=document.createElement('div');cover.className='mini-book';cover.style.background='linear-gradient(145deg,#59452b,#15100b)';cover.innerHTML='<div class="mini-book-inner"><small>EARENDEL COLLECTION</small><h3></h3><span>BOOK</span></div>';cover.querySelector('h3').textContent=book.title;visual.appendChild(cover);}
+   const details=document.createElement('div');details.className='book-details';
+   const author=document.createElement('div');author.className='book-category';author.textContent='BY '+book.author;
+   const title=document.createElement('h3');title.textContent=book.title;
+   const desc=document.createElement('p');desc.textContent=book.desc;
+   const bottom=document.createElement('div');bottom.className='book-bottom';
+   const serial=document.createElement('span');serial.textContent='BOOK '+String(index+1).padStart(2,'0');
+   const link=document.createElement('a');link.className='read-btn';link.href=book.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='বইটি খুঁজুন ↗';
+   bottom.append(serial,link);details.append(author,title,desc,bottom);card.append(visual,details);grid.appendChild(card);
+  });
+  if(empty)empty.style.display='none';
+ }
  grid.innerHTML='';
  books.forEach((book,index)=>{
   const card=document.createElement('article');card.className='book-card reveal';card.dataset.search=(book.title+' '+book.author+' '+(book.description||'')).toLowerCase();
