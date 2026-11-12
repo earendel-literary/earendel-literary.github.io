@@ -678,7 +678,7 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
  const empty=document.getElementById('empty');
  const searchBox=document.getElementById('search');
  const dbReady=window.supabase&&window.EARENDEL_SUPABASE_URL&&window.EARENDEL_SUPABASE_ANON_KEY;
- if(!dbReady){grid.innerHTML='<p style="color:var(--muted)">The book library is temporarily unavailable.</p>';return;}
+ if(!dbReady){console.warn('Supabase client/config unavailable; showing online catalogue.');renderOnlineCatalogue();return;}
  const db=window.supabase.createClient(window.EARENDEL_SUPABASE_URL,window.EARENDEL_SUPABASE_ANON_KEY);
  const {data:books,error}=await db.from('books').select('id,title,slug,author,description,cover_image_url,created_at').eq('status','published').order('created_at',{ascending:false});
  if(error){console.error('Could not load EARENDEL books:',error.message);renderOnlineCatalogue();return;}
