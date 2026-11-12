@@ -1,776 +1,242 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080808">
-<title>Novels — EARENDEL</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+<meta name="theme-color" content="#10100e">
+<title>Novels & Library — EARENDEL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#080808;
-  --panel:#11100e;
-  --gold:#c8a45d;
-  --light:#ead5a0;
-  --text:#eee7d9;
-  --muted:#a59d90;
-  --line:rgba(200,164,93,.2);
-}
-*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#f4f0e8;--paper:#fbf9f4;--ink:#24251f;--muted:#77786f;--line:#ded9cd;--green:#283d32;--green2:#3d5948;--gold:#b28a4a;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Noto Serif Bengali',serif}
-a{text-decoration:none;color:inherit}
-button,input{font:inherit}
-.container{width:min(1120px,90%);margin:auto}
-.eyebrow{font-size:10px;letter-spacing:4px;color:var(--gold)}
-.gold{color:var(--gold)}
-
-/* HEADER */
-header{
-  position:sticky;top:0;z-index:20;
-  background:rgba(8,8,8,.95);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid var(--line);
-}
-.navbar{min-height:80px;display:flex;justify-content:space-between;align-items:center;gap:20px}
-.logo{
-  font-family:'Cormorant Garamond',serif;
-  font-size:34px;letter-spacing:6px;
-  color:var(--light);font-weight:600;
-}
-.nav-links{display:flex;align-items:center;gap:23px}
-.nav-links a{font-size:11px;color:#c1b9aa;transition:.3s}
-.nav-links a:hover,.nav-links .active{color:var(--gold)}
-.nav-links .contact{border:1px solid var(--gold);padding:10px 16px;color:var(--gold)}
-.menu{
-  display:none;background:none;color:var(--gold);
-  border:1px solid var(--line);padding:8px 12px;
-  font-size:20px;cursor:pointer;
-}
-
-/* HERO */
-.hero{
-  position:relative;overflow:hidden;
-  min-height:590px;display:flex;align-items:center;
-  background:
-    linear-gradient(90deg,rgba(8,8,8,.98) 8%,rgba(8,8,8,.8) 52%,rgba(8,8,8,.15)),
-    url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1800') center/cover;
-  border-bottom:1px solid var(--line);
-}
-.hero-content{max-width:720px;padding:100px 0}
-.hero h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(80px,12vw,140px);
-  font-weight:400;line-height:.83;
-  margin:27px 0;
-}
-.hero h1 span{color:var(--gold);font-style:italic}
-.hero p{font-size:13px;color:#c2b9a9;line-height:2.3;max-width:530px}
-.hero-button{
-  display:inline-block;margin-top:32px;
-  padding:14px 23px;background:var(--gold);
-  color:#080808;font-size:10px;letter-spacing:2px;
-  transition:.3s;
-}
-.hero-button:hover{background:var(--light);transform:translateY(-4px)}
-.hero-note{
-  position:absolute;bottom:30px;right:5%;
-  color:var(--light);font-family:'Cormorant Garamond',serif;
-  font-size:19px;font-style:italic;
-}
-
-/* INTRO */
-.intro{padding:75px 0 45px;text-align:center}
-.intro h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(43px,6vw,67px);
-  font-weight:400;margin:13px 0;
-}
-.intro p{max-width:650px;margin:auto;color:var(--muted);font-size:12px;line-height:2.3}
-
-/* FEATURED BOOK */
-.featured{padding:40px 0 100px}
-.featured-box{
-  display:grid;grid-template-columns:.9fr 1.1fr;
-  background:linear-gradient(120deg,#17130d,#0d0c0a);
-  border:1px solid var(--line);
-  min-height:420px;overflow:hidden;
-}
-.featured-visual{
-  min-height:420px;display:flex;
-  justify-content:center;align-items:center;
-  background:radial-gradient(ellipse,rgba(200,164,93,.12),transparent 70%);
-}
-.book-cover{
-  width:225px;height:320px;position:relative;
-  background:linear-gradient(140deg,#38291a,#17100b 65%,#090807);
-  border:1px solid var(--gold);
-  padding:20px;box-shadow:18px 20px 40px #000;
-  transform:rotate(-4deg);transition:.5s;
-}
-.book-cover:hover{transform:rotate(0) translateY(-8px)}
-.book-cover-inner{
-  width:100%;height:100%;border:1px solid rgba(234,213,160,.45);
-  display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  text-align:center;padding:15px;
-}
-.book-cover .cover-small{font-size:8px;letter-spacing:3px;color:var(--light)}
-.book-cover h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:37px;font-weight:400;color:#f2dfb4;
-  margin:30px 0;line-height:1;
-}
-.book-cover .cover-bottom{font-size:9px;color:var(--gold);letter-spacing:2px}
-.featured-info{padding:50px;display:flex;flex-direction:column;justify-content:center}
-.featured-info h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:55px;font-weight:400;margin:15px 0;
-}
-.featured-info p{font-size:13px;color:var(--muted);line-height:2.3}
-.book-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-.book-tags span{border:1px solid var(--line);padding:8px 12px;color:var(--gold);font-size:9px}
-.featured-btn{
-  margin-top:28px;width:max-content;
-  padding:12px 20px;border:1px solid var(--gold);
-  background:none;color:var(--gold);font-size:10px;
-  cursor:pointer;transition:.3s;
-}
-.featured-btn:hover{background:var(--gold);color:#080808}
-
-/* LIBRARY */
-.library{padding:75px 0 110px;background:#0b0a08}
-.section-head{
-  display:flex;justify-content:space-between;
-  align-items:end;gap:20px;flex-wrap:wrap;
-}
-.section-head h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:65px;font-weight:400;margin-top:10px;
-}
-.section-head p{font-size:12px;color:var(--muted);line-height:2}
-.toolbar{display:flex;gap:15px;flex-wrap:wrap;margin:38px 0 30px}
-.search{
-  flex:1;min-width:220px;
-  background:#11100e;border:1px solid var(--line);
-  padding:14px 17px;color:var(--text);
-  outline:none;font-size:12px;
-}
-.search:focus{border-color:var(--gold)}
-.filters{display:flex;gap:8px;flex-wrap:wrap}
-.filter{
-  background:transparent;color:var(--muted);
-  border:1px solid var(--line);
-  padding:12px 15px;font-size:10px;cursor:pointer;transition:.3s;
-}
-.filter:hover,.filter.active{background:var(--gold);color:#080808;border-color:var(--gold)}
-
-/* BOOK GRID */
-.book-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.book-card{
-  background:var(--panel);border:1px solid var(--line);
-  padding:17px;transition:.4s;
-}
-.book-card:hover{transform:translateY(-8px);border-color:var(--gold)}
-.book-visual{
-  height:270px;display:flex;align-items:center;
-  justify-content:center;overflow:hidden;
-  background:#0a0908;position:relative;
-}
-.mini-book{
-  height:220px;width:150px;
-  position:relative;padding:9px;
-  box-shadow:12px 14px 25px #000;
-  transition:.5s;
-}
-.book-card:hover .mini-book{transform:scale(1.05) rotate(2deg)}
-.mini-book-inner{
-  width:100%;height:100%;border:1px solid rgba(255,255,255,.35);
-  display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  text-align:center;padding:12px;
-}
-.mini-book small{font-size:8px;letter-spacing:2px;color:#f0dfbd}
-.mini-book h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:27px;line-height:1.05;
-  font-weight:400;color:#fff1d4;margin:20px 0;
-}
-.mini-book span{font-size:8px;letter-spacing:2px;color:#e5c987}
-.book-details{padding:20px 5px 5px}
-.book-category{font-size:9px;letter-spacing:2px;color:var(--gold)}
-.book-details h3{font-size:18px;font-weight:500;margin:10px 0}
-.book-details p{font-size:11px;line-height:2;color:var(--muted);min-height:44px}
-.book-bottom{
-  display:flex;justify-content:space-between;align-items:center;
-  border-top:1px solid var(--line);margin-top:18px;padding-top:15px;
-}
-.book-bottom span{font-size:9px;color:var(--muted)}
-.read-btn{background:none;border:0;color:var(--gold);font-size:10px;cursor:pointer}
-.empty{display:none;text-align:center;padding:60px 10px;color:var(--muted)}
-
-/* COLLECTION NOTE */
-.collection-note{
-  padding:75px 0;text-align:center;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  background:radial-gradient(ellipse at center,rgba(200,164,93,.1),transparent 70%);
-}
-.collection-note h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(35px,5vw,56px);
-  font-weight:400;line-height:1.3;
-}
-.collection-note p{font-size:12px;color:var(--muted);margin-top:15px;line-height:2}
-
-/* BOOK MODAL */
-.modal{
-  display:none;position:fixed;inset:0;z-index:50;
-  background:rgba(0,0,0,.9);backdrop-filter:blur(10px);
-  padding:20px;align-items:center;justify-content:center;
-}
-.modal.show{display:flex}
-.modal-content{
-  position:relative;width:min(680px,100%);
-  max-height:85vh;overflow:auto;
-  background:#11100e;border:1px solid var(--gold);
-  padding:45px;animation:modalIn .35s ease;
-}
-@keyframes modalIn{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.close{
-  position:absolute;right:18px;top:12px;
-  background:none;border:0;color:var(--gold);
-  font-size:28px;cursor:pointer;
-}
-.modal-content h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:47px;color:var(--gold);
-  font-weight:400;margin:15px 0;
-}
-.modal-meta{font-size:10px;color:var(--muted);margin-bottom:25px}
-.modal-description{font-size:14px;line-height:2.4;color:#ddd4c5;white-space:pre-line}
-.modal-footer{
-  display:flex;justify-content:space-between;
-  align-items:center;gap:15px;flex-wrap:wrap;
-  margin-top:30px;padding-top:20px;border-top:1px solid var(--line);
-}
-.modal-footer span{font-size:10px;color:var(--muted)}
-.copy-btn{
-  background:none;border:1px solid var(--gold);
-  color:var(--gold);padding:10px 15px;font-size:10px;cursor:pointer;
-}
-
-/* FOOTER */
-footer{background:#050505;padding:40px 0 22px}
-.footer-top{
-  display:flex;justify-content:space-between;
-  align-items:center;gap:20px;flex-wrap:wrap;padding-bottom:25px;
-}
-.footer-logo{
-  font-family:'Cormorant Garamond',serif;
-  font-size:30px;letter-spacing:5px;color:var(--gold);
-}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Serif Bengali',serif}
+a{color:inherit;text-decoration:none}button,input{font:inherit}
+.wrap{width:min(1180px,91%);margin:auto}
+.topline{height:4px;background:var(--green)}
+header{background:rgba(251,249,244,.94);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line)}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font:600 30px 'Playfair Display',serif;letter-spacing:4px;color:var(--green)}
+.navlinks{display:flex;align-items:center;gap:27px}
+.navlinks a{font:600 11px 'DM Sans',sans-serif;letter-spacing:.5px;color:#62645c;transition:.2s}
+.navlinks a:hover,.navlinks a.active{color:var(--green)}
+.navlinks .contact{border:1px solid var(--green);padding:11px 17px;color:var(--green)}
+.menu{display:none;border:1px solid var(--line);background:transparent;padding:8px 12px;font-size:20px;color:var(--green)}
+.hero{background:var(--green);color:#f7f2e8;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(231,215,180,.15);border-radius:50%;right:-100px;top:-190px;box-shadow:0 0 0 45px rgba(231,215,180,.025),0 0 0 90px rgba(231,215,180,.025)}
+.hero-inner{min-height:440px;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:40px;padding-top:55px;padding-bottom:55px;position:relative;z-index:1}
+.kicker{font:700 10px 'DM Sans',sans-serif;letter-spacing:3px;text-transform:uppercase;color:#d8bd88}
+.hero h1{font:500 clamp(54px,8vw,94px)/.98 'Playfair Display',serif;margin:22px 0 18px;max-width:700px}
+.hero h1 em{color:#d8bd88;font-weight:500}
+.hero p{max-width:560px;color:#e0e2d9;font-size:13px;line-height:2.2}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 19px;border:1px solid transparent;background:#d8bd88;color:#1d2b23;font:700 10px 'DM Sans',sans-serif;letter-spacing:1px;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px);background:#ead8b2}
+.btn-outline{border-color:rgba(255,255,255,.45);background:transparent;color:#fff}
+.btn-outline:hover{background:rgba(255,255,255,.1);color:#fff}
+.hero-art{height:300px;display:flex;align-items:center;justify-content:center;position:relative}
+.book-stack{width:210px;height:270px;position:relative;transform:rotate(-7deg);filter:drop-shadow(22px 25px 18px rgba(0,0,0,.28))}
+.book-stack:before{content:"";position:absolute;inset:0;background:#d9c49b;border:7px solid #b59a68;box-shadow:inset 0 0 0 1px #75613e}
+.book-stack:after{content:"EARENDEL  /  THE LIBRARY";position:absolute;inset:17px;border:1px solid rgba(40,61,50,.55);display:flex;align-items:center;justify-content:center;text-align:center;color:#344638;font:600 17px 'Playfair Display',serif;letter-spacing:2px;padding:20px}
+.book-stack span{position:absolute;z-index:2;bottom:38px;left:0;right:0;text-align:center;font:italic 12px 'Playfair Display',serif;color:#465540}
+.hero-caption{position:absolute;right:0;bottom:8px;font:italic 16px 'Playfair Display',serif;color:#d8bd88}
+.intro{padding:64px 0 38px;text-align:center}
+.intro .kicker{color:var(--gold)}
+.intro h2{font:500 clamp(34px,5vw,54px) 'Playfair Display',serif;margin:13px 0}
+.intro p{max-width:660px;margin:auto;color:var(--muted);font-size:12px;line-height:2.2}
+.library{padding:50px 0 100px}
+.library-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:23px}
+.library-head .kicker{color:var(--gold)}
+.library-head h2{font:500 clamp(38px,5vw,58px) 'Playfair Display',serif;margin-top:7px}
+.library-head p{font-size:11px;color:var(--muted);line-height:2}
+.tools{display:flex;gap:12px;align-items:center;margin:26px 0 28px;flex-wrap:wrap}
+.searchbox{position:relative;flex:1;min-width:240px}
+.searchbox span{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:#85877e}
+.searchbox input{width:100%;border:1px solid var(--line);background:var(--paper);padding:14px 16px 14px 43px;outline:none;color:var(--ink);font-size:12px}
+.searchbox input:focus{border-color:var(--green)}
+.count{font:600 10px 'DM Sans',sans-serif;color:var(--muted);letter-spacing:1px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.book-card{background:var(--paper);border:1px solid var(--line);padding:13px;transition:.25s;min-width:0}
+.book-card:hover{transform:translateY(-5px);box-shadow:0 14px 28px rgba(44,43,34,.08);border-color:#b7ad98}
+.cover{height:245px;background:#e8e2d5;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.cover img{width:100%;height:100%;object-fit:cover}
+.cover-placeholder{width:145px;height:205px;padding:12px;background:linear-gradient(145deg,#526b58,#263b30);box-shadow:10px 12px 18px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center}
+.cover-placeholder-inner{height:100%;width:100%;border:1px solid rgba(255,255,255,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px;color:#f6f0df}
+.cover-placeholder small{font:600 7px 'DM Sans',sans-serif;letter-spacing:2px}
+.cover-placeholder strong{font:500 22px 'Noto Serif Bengali',serif;margin:20px 0;overflow-wrap:anywhere}
+.cover-placeholder span{font:500 8px 'DM Sans',sans-serif;letter-spacing:2px}
+.card-body{padding:15px 3px 4px}
+.author{font:700 9px 'DM Sans',sans-serif;letter-spacing:1px;text-transform:uppercase;color:#9a7844}
+.card-body h3{font-size:17px;font-weight:600;margin:8px 0 7px;overflow-wrap:anywhere}
+.card-body p{font-size:10px;line-height:1.9;color:var(--muted);min-height:38px}
+.card-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:12px;margin-top:13px}
+.card-foot span{font:600 9px 'DM Sans',sans-serif;color:#8a8b81}
+.read{border:0;background:transparent;color:var(--green);font:700 10px 'DM Sans',sans-serif;cursor:pointer}
+.read:hover{text-decoration:underline}
+.state{background:var(--paper);border:1px dashed #c9c2b4;text-align:center;padding:60px 20px;grid-column:1/-1}
+.state-icon{font-size:30px;color:var(--gold);margin-bottom:12px}
+.state h3{font:500 25px 'Playfair Display',serif;margin-bottom:9px}
+.state p{font-size:11px;color:var(--muted);line-height:2}
+.state.error{border-color:#c9a5a0}
+.quote-band{background:#e9e3d7;padding:62px 0;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quote-band p{font:italic clamp(26px,4vw,42px) 'Playfair Display',serif;color:var(--green);line-height:1.35}
+.quote-band span{display:block;margin-top:15px;font:700 9px 'DM Sans',sans-serif;letter-spacing:3px;color:#8e7958}
+footer{background:#202e26;color:#eee9dc;padding:42px 0 20px}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-bottom:25px}
+.footer-brand{font:600 28px 'Playfair Display',serif;letter-spacing:4px;color:#dfc997}
 .footer-links{display:flex;gap:18px;flex-wrap:wrap}
-.footer-links a{font-size:10px;color:var(--muted)}
-.footer-links a:hover{color:var(--gold)}
-.copyright{border-top:1px solid var(--line);padding-top:20px;text-align:center;color:#777064;font-size:10px}
-
-/* ANIMATION */
-.reveal{opacity:0;transform:translateY(25px);transition:.8s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-@media(max-width:850px){
-  .nav-links{gap:12px}
-  .nav-links a{font-size:10px}
-  .book-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:650px){
-  .navbar{min-height:72px}
-  .logo{font-size:28px}
-  .menu{display:block}
-  .nav-links{
-    display:none;position:absolute;top:72px;left:0;right:0;
-    background:#0b0a08;padding:15px 5%;
-    flex-direction:column;align-items:stretch;gap:0;
-  }
-  .nav-links.show{display:flex}
-  .nav-links a{padding:13px 0;border-bottom:1px solid var(--line)}
-  .nav-links .contact{margin-top:10px;text-align:center}
-  .hero{min-height:490px;background-position:60% center}
-  .hero-content{padding:80px 0}
-  .hero h1{font-size:88px}
-  .featured-box{grid-template-columns:1fr}
-  .featured-visual{min-height:350px}
-  .featured-info{padding:28px}
-  .featured-info h2{font-size:43px}
-  .section-head h2{font-size:49px}
-  .book-grid{grid-template-columns:1fr}
-  .book-visual{height:300px}
-  .mini-book{height:240px;width:165px}
-  .modal-content{padding:38px 23px}
-  .modal-content h2{font-size:37px}
-  .modal-description{font-size:13px}
-  .footer-top{flex-direction:column;align-items:flex-start}
-}
-\n/* IN-PAGE READER */\n#modalDescription{white-space:pre-wrap;line-height:2.25;font-size:16px;color:#e6ddcf;background:#0b0a08;padding:24px;border:1px solid var(--line);max-height:52vh;overflow:auto}\n.reader-controls{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px}\n.reader-controls span,.reader-credit{font-size:11px;color:var(--muted)}\n.reader-credit{margin-top:14px}\n</style>
+.footer-links a{font:500 10px 'DM Sans',sans-serif;color:#d1d0c6}
+.footer-links a:hover{color:#dfc997}
+.copy{border-top:1px solid rgba(255,255,255,.15);padding-top:18px;text-align:center;font:10px 'DM Sans',sans-serif;color:#b3b8ae}
+.modal{position:fixed;inset:0;z-index:60;background:rgba(16,20,17,.82);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:18px}
+.modal.open{display:flex}
+.reader{width:min(900px,100%);max-height:92vh;overflow:auto;background:var(--paper);box-shadow:0 25px 70px rgba(0,0,0,.3);display:grid;grid-template-columns:260px 1fr;position:relative}
+.reader-side{background:var(--green);color:#f5f0e5;padding:32px 24px}
+.reader-cover{height:265px;background:#e1d1ae;padding:12px;display:flex;align-items:center;justify-content:center;margin-bottom:22px}
+.reader-cover img{width:100%;height:100%;object-fit:contain}
+.reader-cover .cover-placeholder{width:100%;height:100%;box-shadow:none}
+.reader-side .kicker{font-size:9px}
+.reader-side h2{font:500 25px 'Playfair Display',serif;margin:10px 0}
+.reader-side p{font-size:11px;line-height:2;color:#d8ded6}
+.reader-main{padding:36px 38px;min-width:0}
+.close{position:absolute;right:14px;top:10px;border:0;background:transparent;color:var(--green);font-size:30px;cursor:pointer;z-index:2}
+.reader-main .kicker{color:var(--gold)}
+.reader-main h3{font:500 29px 'Playfair Display',serif;margin:10px 0 18px}
+.chapter-list{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0 22px}
+.chapter-btn{border:1px solid var(--line);background:transparent;padding:8px 11px;font-size:10px;color:var(--muted);cursor:pointer}
+.chapter-btn.active,.chapter-btn:hover{background:var(--green);border-color:var(--green);color:white}
+.chapter-content{border-top:1px solid var(--line);padding-top:22px;font-size:14px;line-height:2.25;white-space:pre-wrap;color:#3e4039;min-height:140px}
+.reader-note{font-size:10px;color:var(--muted);margin-top:20px}
+.loading{color:var(--muted);font-size:12px;padding:24px 0}
+@media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-inner{grid-template-columns:1fr .7fr}.hero-art{transform:scale(.85)}}
+@media(max-width:700px){.nav{height:70px}.brand{font-size:26px}.menu{display:block}.navlinks{display:none;position:absolute;top:70px;left:0;right:0;background:var(--paper);padding:12px 5%;flex-direction:column;align-items:stretch;gap:0;border-bottom:1px solid var(--line)}.navlinks.show{display:flex}.navlinks a{padding:13px 0;border-bottom:1px solid var(--line)}.navlinks .contact{margin-top:10px;text-align:center}.hero-inner{grid-template-columns:1fr;min-height:unset;padding-top:65px;padding-bottom:45px}.hero-art{height:220px;transform:scale(.72);margin-top:-10px}.hero h1{font-size:62px}.hero-caption{right:5%;bottom:0}.intro{padding:48px 0 25px}.library{padding-top:35px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.cover{height:200px}.cover-placeholder{width:120px;height:170px}.card-body h3{font-size:15px}.reader{grid-template-columns:1fr}.reader-side{display:grid;grid-template-columns:95px 1fr;gap:15px;align-items:center;padding:18px 55px 18px 18px}.reader-cover{height:120px;margin:0}.reader-side h2{font-size:20px}.reader-main{padding:24px 20px}.chapter-content{font-size:13px}}
+@media(max-width:390px){.grid{grid-template-columns:1fr}.cover{height:255px}.cover-placeholder{width:155px;height:220px}}
+</style>
 </head>
-
 <body>
-
+<div class="topline"></div>
 <header>
-  <div class="container navbar">
-    <a href="index.html" class="logo">EARENDEL</a>
-    <button class="menu" id="menuBtn" aria-label="Open menu">☰</button>
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="poetry.html">Poetry</a>
-      <a href="stories.html">Stories</a>
-      <a href="novels.html" class="active">Novels</a>
-      <a href="quotes.html">Quotes</a>
-      <a href="about.html">About</a>
-      <a href="contact.html" class="contact">Contact ↗</a>
-    </nav>
-  </div>
+ <div class="wrap nav">
+  <a class="brand" href="index.html">EARENDEL</a>
+  <button class="menu" id="menuBtn" aria-label="Toggle navigation">☰</button>
+  <nav class="navlinks" id="navLinks">
+   <a href="index.html">Home</a><a href="poetry.html">Poetry</a><a href="stories.html">Stories</a><a class="active" href="novels.html">Novels</a><a href="quotes.html">Quotes</a><a href="about.html">About</a><a class="contact" href="contact.html">Contact ↗</a>
+  </nav>
+ </div>
 </header>
-
 <main>
-
-<!-- HERO -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-content reveal">
-      <div class="eyebrow">A WORLD BETWEEN THE COVERS</div>
-      <h1>Beyond<br><span>Pages.</span></h1>
-      <p>
-        একটি উপন্যাস মানে শুধু কিছু পৃষ্ঠা নয়।
-        এটি একেকটি জীবন, একেকটি সময়,
-        একেকটি অজানা পৃথিবীতে হারিয়ে যাওয়ার গল্প।
-      </p>
-      <a href="#library" class="hero-button">EXPLORE THE COLLECTION ↗</a>
-    </div>
+ <div class="wrap hero-inner">
+  <div>
+   <div class="kicker">THE EARENDEL DIGITAL LIBRARY</div>
+   <h1>Find your next<br><em>world to enter.</em></h1>
+   <p>পাতার পর পাতা, গল্পের পর গল্প—নিজের মতো করে খুঁজে নাও তোমার পরবর্তী পাঠ। EARENDEL-এর ছোট্ট ডিজিটাল পাঠাগারে স্বাগতম।</p>
+   <div class="hero-actions"><a class="btn" href="#library">EXPLORE LIBRARY ↓</a><a class="btn btn-outline" href="index.html">BACK TO HOME</a></div>
   </div>
-  <div class="hero-note">Every book opens another world.</div>
+  <div class="hero-art"><div class="book-stack"><span>A place for stories</span></div><div class="hero-caption">Read slowly. Feel deeply.</div></div>
+ </div>
 </section>
-
-<!-- INTRO -->
-<section class="intro container reveal">
-  <div class="eyebrow">THE EARENDEL BOOK COLLECTION</div>
-  <h2>Stories Between <span class="gold">Covers.</span></h2>
-  <p>
-    ভালোবাসা থেকে রহস্য, কল্পনা থেকে বাস্তবতা—
-    প্রতিটি বইয়ের পাতায় অপেক্ষা করছে নতুন এক অভিজ্ঞতা।
-    তোমার পরবর্তী প্রিয় গল্পটি খুঁজে নাও।
-  </p>
+<section class="intro wrap">
+ <div class="kicker">A QUIET CORNER FOR READERS</div>
+ <h2>Every book has a world.</h2>
+ <p>কিছু গল্প আমাদের হাসায়, কিছু গল্প থামিয়ে দেয়। এখানে যোগ হওয়া প্রতিটি বইয়ের জন্য থাকবে তার নিজস্ব পরিচয়, প্রচ্ছদ, অধ্যায় এবং পড়ার আলাদা জায়গা।</p>
 </section>
-
-<!-- FEATURED NOVEL -->
-<section class="featured">
-  <div class="container">
-    <div class="eyebrow" style="margin-bottom:20px">THE EDITOR'S SELECTION</div>
-
-    <div class="featured-box reveal">
-      <div class="featured-visual">
-        <div class="book-cover">
-          <div class="book-cover-inner">
-            <div class="cover-small">EARENDEL COLLECTION</div>
-            <h2>অচেনা<br>অধ্যায়</h2>
-            <div class="cover-bottom">A NOVEL</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="featured-info">
-        <div class="eyebrow">FEATURED NOVEL · 01</div>
-        <h2>অচেনা <span class="gold">অধ্যায়</span></h2>
-        <p>
-          জীবনের কিছু অধ্যায় আমরা নিজেরাও বুঝতে পারি না।
-          কিছু মানুষ আসে, কিছু স্মৃতি থেকে যায়,
-          আর কিছু গল্প শেষ হয়েও মনের ভেতর চলতে থাকে।
-        </p>
-        <div class="book-tags">
-          <span>FICTION</span>
-          <span>DRAMA</span>
-          <span>EMOTIONAL</span>
-        </div>
-        <button class="featured-btn" id="featuredRead">EXPLORE THIS BOOK ↗</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BOOK LIBRARY -->
 <section class="library" id="library">
-  <div class="container">
-
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">THE DIGITAL BOOKSHELF</div>
-        <h2>Our <span class="gold">Novels.</span></h2>
-      </div>
-      <p>Choose a book.<br>Enter another world.</p>
-    </div>
-
-    <div class="toolbar">
-      <input class="search" id="search" type="search" placeholder="বইয়ের নাম বা বিষয় দিয়ে খুঁজুন...">
-      <div class="filters"><button class="filter active" data-filter="all">All Books</button></div>
-    </div>
-
-    <div class="book-grid" id="bookGrid"><p style="color:var(--muted);padding:25px 0">Loading the EARENDEL bookshelf…</p></div>
-
-    <div class="empty" id="empty">এই নামে কোনো বই পাওয়া যায়নি। অন্যভাবে খুঁজে দেখো।</div>
+ <div class="wrap">
+  <div class="library-head">
+   <div><div class="kicker">BROWSE THE COLLECTION</div><h2>The Bookshelf</h2></div>
+   <p>Search a title or an author.<br>Choose a book and start reading.</p>
   </div>
-</section>
-
-<!-- CLOSING -->
-<section class="collection-note reveal">
-  <div class="container">
-    <div class="eyebrow">A NOTE FOR EVERY READER</div>
-    <h2>Some books are read.<br><span class="gold">Some are felt.</span></h2>
-    <p>একটি ভালো বই শুধু সময় কাটায় না, কখনো কখনো মানুষকেও বদলে দেয়।</p>
+  <div class="tools">
+   <label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="বই বা লেখকের নাম লিখে খুঁজুন..." autocomplete="off"></label>
+   <div class="count" id="bookCount">LOADING LIBRARY</div>
   </div>
+  <div class="grid" id="bookGrid">
+   <div class="state"><div class="state-icon">⌛</div><h3>পাঠাগার প্রস্তুত হচ্ছে</h3><p>একটু অপেক্ষা করো...</p></div>
+  </div>
+ </div>
 </section>
-
+<section class="quote-band"><div class="wrap"><p>“A reader lives a thousand lives<br>before he dies.”</p><span>THE EARENDEL READING ROOM</span></div></section>
 </main>
-
-<!-- BOOK MODAL -->
-<div class="modal" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-content">
-    <button class="close" id="closeModal" aria-label="Close">×</button>
-    <div class="eyebrow">EARENDEL BOOK COLLECTION</div>
-    <h2 id="modalTitle"></h2>
-    <div class="modal-meta" id="modalMeta"></div>
-    <div class="modal-description" id="modalDescription"></div>
-    <div id="dbBookChapters" style="margin-top:25px"></div>
-    <div class="modal-footer">
-      <span>A WORLD BEYOND WORDS</span>
-      <button class="copy-btn" id="copyBook">COPY DETAILS</button>
-    </div>
-  </div>
+<footer><div class="wrap"><div class="footer-row"><a class="footer-brand" href="index.html">EARENDEL</a><nav class="footer-links"><a href="index.html">Home</a><a href="poetry.html">Poetry</a><a href="stories.html">Stories</a><a href="quotes.html">Quotes</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav></div><div class="copy">© 2026 EARENDEL — A World Beyond Words.</div></div></footer>
+<div class="modal" id="readerModal" role="dialog" aria-modal="true" aria-label="Book reader">
+ <div class="reader">
+  <button class="close" id="closeReader" aria-label="Close reader">×</button>
+  <aside class="reader-side"><div class="reader-cover" id="readerCover"></div><div><div class="kicker">NOW READING</div><h2 id="readerTitle">Book title</h2><p id="readerAuthor"></p></div></aside>
+  <section class="reader-main"><div class="kicker">INSIDE THE BOOK</div><h3 id="chapterHeading">Choose a chapter</h3><div class="chapter-list" id="chapterList"></div><div class="chapter-content" id="chapterContent">এই বইয়ের অধ্যায়গুলো এখানে দেখা যাবে।</div><div class="reader-note">EARENDEL DIGITAL READER · পড়া চালিয়ে যাও নিজের গতিতে</div></section>
+ </div>
 </div>
-
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <a href="index.html" class="footer-logo">EARENDEL</a>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="poetry.html">Poetry</a>
-        <a href="stories.html">Stories</a>
-        <a href="quotes.html">Quotes</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-    <div class="copyright">© 2026 EARENDEL — A World Beyond Words.</div>
-  </div>
-</footer>
-
-<script>
-const books=[
-{
- title:"শেষ বিকেল",
- category:"ROMANCE",
- description:`কিছু বিকেল জীবনের অন্য সব বিকেলের চেয়ে আলাদা।
-
-সেদিনের আকাশ, সেই চায়ের কাপ, আর পাশাপাশি বসে থাকা দুটি মানুষ—সবকিছুই ছিল খুব সাধারণ।
-
-তবুও সময় পেরিয়ে যাওয়ার পর সেই বিকেলটাই সবচেয়ে বেশি মনে পড়ে।
-
-কারণ কিছু মুহূর্তের মূল্য আমরা বুঝতে পারি, যখন সেগুলো আর ফিরে আসে না।
-
-একটি মৌলিক রোমান্টিক উপন্যাসের ধারণা।`
-},
-{
- title:"অন্ধকারের পাশে",
- category:"THRILLER",
- description:`শহরের পুরোনো বাড়িটিতে কেউ প্রবেশ করে না।
-
-অথচ প্রতি রাতে সেখানে একটি জানালায় আলো জ্বলে ওঠে।
-
-একজন কৌতূহলী তরুণ সেই রহস্যের উত্তর খুঁজতে গিয়ে আবিষ্কার করে এমন কিছু সত্য, যা তার পরিচিত পৃথিবীকে বদলে দেয়।
-
-একটি মৌলিক রহস্য-থ্রিলার উপন্যাসের ধারণা।`
-},
-{
- title:"অন্য পৃথিবী",
- category:"FICTION",
- description:`একটি অদ্ভুত দরজা। একটি অচেনা পৃথিবী।
-
-সেই পৃথিবীতে সময় চলে অন্য নিয়মে, আর মানুষের স্মৃতি হয়ে ওঠে সবচেয়ে মূল্যবান সম্পদ।
-
-নিজের পরিচয় খুঁজতে গিয়ে একজন পথিক আবিষ্কার করে নিজের ভেতরের অজানা এক জগৎ।
-
-একটি মৌলিক কল্পকাহিনির ধারণা।`
-},
-{
- title:"নীরব অভিমান",
- category:"DRAMA",
- description:`সব সম্পর্ক ভাঙে ঝগড়ার কারণে নয়।
-
-কিছু সম্পর্ক ভেঙে যায় ছোট ছোট অবহেলায়, কিছু না বলা কথায়, আর জমে থাকা অভিমানে।
-
-এই গল্প এমন কিছু মানুষের, যারা একে অপরকে ভালোবাসত, অথচ সময়মতো মনের কথা বলতে পারেনি।
-
-একটি মৌলিক আবেগঘন উপন্যাসের ধারণা।`
-},
-{
- title:"তোমার অপেক্ষায়",
- category:"ROMANCE",
- description:`অপেক্ষা সবসময় কাউকে ফিরে পাওয়ার জন্য হয় না।
-
-কখনো অপেক্ষা করি একটি খবরের, কখনো একটি পরিচিত কণ্ঠের, কখনো শুধু পুরোনো দিনের অনুভূতিটুকু ফিরে পাওয়ার আশায়।
-
-এই গল্প ভালোবাসা, দূরত্ব ও আশার।
-
-একটি মৌলিক রোমান্টিক উপন্যাসের ধারণা।`
-},
-{
- title:"শেষ অধ্যায়",
- category:"FICTION",
- description:`একটি গল্পের শেষ মানেই কি সবকিছুর শেষ?
-
-একজন লেখক নিজের জীবনের শেষ অধ্যায় লিখতে বসে আবিষ্কার করে, তার গল্পের চরিত্রগুলো যেন বাস্তব জীবনের মানুষদের সঙ্গে মিলে যাচ্ছে।
-
-কল্পনা আর বাস্তবতার মাঝখানে শুরু হয় নতুন এক যাত্রা।
-
-একটি মৌলিক ফিকশন উপন্যাসের ধারণা।`
-}
-];
-
-const modal=document.getElementById("bookModal");
-const modalTitle=document.getElementById("modalTitle");
-const modalMeta=document.getElementById("modalMeta");
-const modalDescription=document.getElementById("modalDescription");
-const copyButton=document.getElementById("copyBook");
-let currentBook=null;
-
-function openBook(index){
-  const book=books[index];
-  if(!book)return;
-  currentBook=book;
-  modalTitle.textContent=book.title;
-  modalMeta.textContent=book.category+" · EARENDEL BOOK COLLECTION";
-  modalDescription.textContent=book.description;
-  modal.classList.add("show");
-  document.body.style.overflow="hidden";
-  document.getElementById("closeModal").focus();
-}
-
-function closeBook(){
-  modal.classList.remove("show");
-  document.body.style.overflow="";
-}
-
-document.querySelectorAll("[data-book]").forEach(button=>{
-  button.addEventListener("click",()=>{
-    openBook(Number(button.dataset.book));
-  });
-});
-
-document.getElementById("featuredRead").addEventListener("click",()=>{
-  openBook(2);
-});
-
-document.getElementById("closeModal").addEventListener("click",closeBook);
-
-modal.addEventListener("click",e=>{
-  if(e.target===modal)closeBook();
-});
-
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape")closeBook();
-});
-
-copyButton.addEventListener("click",async()=>{
-  if(!currentBook)return;
-  try{
-    await navigator.clipboard.writeText(
-      currentBook.title+"\n"+currentBook.category+"\n\n"+currentBook.description
-    );
-    copyButton.textContent="COPIED ✓";
-  }catch(error){
-    copyButton.textContent="COPY NOT AVAILABLE";
-  }
-  setTimeout(()=>copyButton.textContent="COPY DETAILS",1800);
-});
-
-// SEARCH AND FILTER
-const search=document.getElementById("search");
-const filters=document.querySelectorAll(".filter");
-const cards=document.querySelectorAll(".book-card");
-const empty=document.getElementById("empty");
-let activeFilter="all";
-
-function filterBooks(){
-  const query=search.value.trim().toLowerCase();
-  let count=0;
-
-  cards.forEach(card=>{
-    const categoryMatch=
-      activeFilter==="all"||card.dataset.category===activeFilter;
-    const searchMatch=card.innerText.toLowerCase().includes(query);
-    const show=categoryMatch&&searchMatch;
-
-    card.style.display=show?"block":"none";
-    if(show)count++;
-  });
-
-  empty.style.display=count?"none":"block";
-}
-
-search.addEventListener("input",filterBooks);
-
-filters.forEach(button=>{
-  button.addEventListener("click",()=>{
-    filters.forEach(b=>b.classList.remove("active"));
-    button.classList.add("active");
-    activeFilter=button.dataset.filter;
-    filterBooks();
-  });
-});
-
-// MOBILE NAVIGATION
-const menuBtn=document.getElementById("menuBtn");
-const navLinks=document.getElementById("navLinks");
-
-menuBtn.addEventListener("click",()=>{
-  navLinks.classList.toggle("show");
-  menuBtn.textContent=navLinks.classList.contains("show")?"✕":"☰";
-});
-
-navLinks.querySelectorAll("a").forEach(link=>{
-  link.addEventListener("click",()=>{
-    navLinks.classList.remove("show");
-    menuBtn.textContent="☰";
-  });
-});
-
-// SCROLL REVEAL
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    }
-  });
-},{threshold:.1});
-
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-
-
-
-
-</script>
-
-<!-- EARENDEL LIVE PUBLISHING -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
 <script>
-/* EARENDEL IN-PAGE READER: public-domain texts open inside this page */
 (function(){
- const grid=document.getElementById('bookGrid');
- const empty=document.getElementById('empty');
- const searchBox=document.getElementById('search');
- if(!grid)return;
- const devdasChapters=['প্রথম','দ্বিতীয়','তৃতীয়','চতুর্থ','পঞ্চম','ষষ্ঠ','সপ্তম','অষ্টম','নবম','দশম','একাদশ','দ্বাদশ','ত্রয়োদশ','চতুর্দশ','পঞ্চদশ','ষোড়শ'];
- const devdasPage='দেবদাস (শরৎচন্দ্র চট্টোপাধ্যায়)';
- const catalogue=[
-  {title:'অপেক্ষা',author:'হুমায়ূন আহমেদ',desc:'হুমায়ূন আহমেদের জনপ্রিয় উপন্যাস। কপিরাইটের কারণে সম্পূর্ণ পাঠ্য এখানে অনুমতি ছাড়া প্রকাশ করা হয়নি।',readable:false},
-  {title:'নন্দিত নরকে',author:'হুমায়ূন আহমেদ',desc:'হুমায়ূন আহমেদের পরিচিত উপন্যাস। সম্পূর্ণ পাঠ্য যোগ করতে প্রকাশকের/স্বত্বাধিকারীর অনুমতি প্রয়োজন।',readable:false},
-  {title:'শঙ্খনীল কারাগার',author:'হুমায়ূন আহমেদ',desc:'হুমায়ূন আহমেদের পরিচিত উপন্যাস। সম্পূর্ণ পাঠ্য যোগ করতে প্রকাশকের/স্বত্বাধিকারীর অনুমতি প্রয়োজন।',readable:false},
-  {title:'দেবদাস',author:'শরৎচন্দ্র চট্টোপাধ্যায়',desc:'শরৎচন্দ্র চট্টোপাধ্যায়ের ১৯৪৭ সালের সংস্করণটি উইকিসংকলনে পাবলিক ডোমেইন হিসেবে চিহ্নিত। EARENDEL পেজের ভেতরেই অধ্যায় ধরে পড়ো।',readable:true,page:devdasPage},
-  {title:'চোখের বালি',author:'রবীন্দ্রনাথ ঠাকুর',desc:'রবীন্দ্রনাথ ঠাকুরের উপন্যাস। পূর্ণ পাঠ্য যোগ করার আগে নির্দিষ্ট মুক্ত পাঠ্য-সংস্করণ যাচাই করা হবে।',readable:false},
-  {title:'শ্রীকান্ত',author:'শরৎচন্দ্র চট্টোপাধ্যায়',desc:'শরৎচন্দ্রের উপন্যাস। পূর্ণ পাঠ্য যোগ করার আগে নির্দিষ্ট মুক্ত পাঠ্য-সংস্করণ যাচাই করা হবে।',readable:false}
- ];
- const readerBox=document.getElementById('dbBookChapters');
- let activeChapter=0, activeReaderBook=null;
- function render(list){
-  grid.innerHTML='';
-  list.forEach((book,index)=>{
-   const card=document.createElement('article');card.className='book-card';card.dataset.search=(book.title+' '+book.author+' '+book.desc).toLowerCase();
-   const visual=document.createElement('div');visual.className='book-visual';
-   const cover=document.createElement('div');cover.className='mini-book';cover.style.background='linear-gradient(145deg,#59452b,#15100b)';
-   cover.innerHTML='<div class="mini-book-inner"><small>EARENDEL COLLECTION</small><h3></h3><span>BOOK</span></div>';
-   cover.querySelector('h3').textContent=book.title;visual.appendChild(cover);
-   const details=document.createElement('div');details.className='book-details';
-   const author=document.createElement('div');author.className='book-category';author.textContent='BY '+book.author;
-   const title=document.createElement('h3');title.textContent=book.title;
-   const desc=document.createElement('p');desc.textContent=book.desc;
-   const bottom=document.createElement('div');bottom.className='book-bottom';
-   const serial=document.createElement('span');serial.textContent=book.readable?'সম্পূর্ণ পাঠ্য':'তথ্য';
-   const button=document.createElement('button');button.className='read-btn';button.type='button';
-   button.textContent=book.readable?'এখানেই পড়ুন ↓':'পাঠ্য যোগ হয়নি';
-   button.disabled=!book.readable;button.style.opacity=book.readable?'1':'.55';
-   if(book.readable)button.addEventListener('click',()=>openReader(book));
-   bottom.append(serial,button);details.append(author,title,desc,bottom);card.append(visual,details);grid.appendChild(card);
-  });
-  if(empty)empty.style.display=list.length?'none':'block';
+ const grid=document.getElementById('bookGrid'), search=document.getElementById('searchInput'), count=document.getElementById('bookCount');
+ const modal=document.getElementById('readerModal'), chapterList=document.getElementById('chapterList'), chapterContent=document.getElementById('chapterContent');
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ let books=[],activeBook=null,chapters=[];
+ function coverMarkup(book,large=false){
+  if(book.cover_image_url)return '<img src="'+esc(book.cover_image_url)+'" alt="'+esc(book.title)+' cover" loading="lazy">';
+  return '<div class="cover-placeholder"><div class="cover-placeholder-inner"><small>EARENDEL LIBRARY</small><strong>'+esc(book.title)+'</strong><span>THE READING ROOM</span></div></div>';
  }
- async function openReader(book){
-  activeReaderBook=book;activeChapter=0;
-  modalTitle.textContent=book.title;
-  modalMeta.textContent='শরৎচন্দ্র চট্টোপাধ্যায় · EARENDEL IN-PAGE READER';
-  modalDescription.textContent='বইয়ের অধ্যায় লোড হচ্ছে…';
-  readerBox.innerHTML='';
-  modal.classList.add('show');document.body.style.overflow='hidden';
-  await loadChapter();
+ function render(){
+  const q=search.value.trim().toLocaleLowerCase();
+  const visible=books.filter(b=>(b.title+' '+(b.author||'')+' '+(b.description||'')).toLocaleLowerCase().includes(q));
+  count.textContent=visible.length+' / '+books.length+' BOOKS';
+  if(!visible.length){
+   grid.innerHTML='<div class="state"><div class="state-icon">✧</div><h3>'+(books.length?'কোনো বই খুঁজে পাওয়া যায়নি':'পাঠাগার এখনো খালি')+'</h3><p>'+(books.length?'অন্য কোনো নাম দিয়ে খুঁজে দেখো।':'নতুন বই যোগ হলে সেগুলো এখানে সুন্দরভাবে দেখা যাবে।')+'</p></div>';return;
+  }
+  grid.innerHTML=visible.map(b=>'<article class="book-card"><div class="cover">'+coverMarkup(b)+'</div><div class="card-body"><div class="author">'+esc(b.author||'লেখক উল্লেখ নেই')+'</div><h3>'+esc(b.title)+'</h3><p>'+esc(b.description||'এই বইয়ের বিবরণ এখনো যোগ করা হয়নি।')+'</p><div class="card-foot"><span>EARENDEL LIBRARY</span><button class="read" type="button" data-open="'+esc(b.id)+'">OPEN BOOK ↗</button></div></div></article>').join('');
+  grid.querySelectorAll('[data-open]').forEach(btn=>btn.addEventListener('click',()=>openBook(btn.dataset.open)));
  }
- async function loadChapter(){
-  if(!activeReaderBook)return;
-  const chapterName=devdasChapters[activeChapter];
-  modalDescription.textContent=chapterName+' পরিচ্ছেদ লোড হচ্ছে…';
-  readerBox.innerHTML='';
-  const page=activeReaderBook.page+'/'+chapterName+' পরিচ্ছেদ';
+ async function openBook(id){
+  activeBook=books.find(b=>String(b.id)===String(id));if(!activeBook)return;
+  document.getElementById('readerTitle').textContent=activeBook.title;
+  document.getElementById('readerAuthor').textContent=activeBook.author||'লেখক উল্লেখ নেই';
+  document.getElementById('readerCover').innerHTML=coverMarkup(activeBook,true);
+  document.getElementById('chapterHeading').textContent='অধ্যায় নির্বাচন করো';
+  chapterList.innerHTML='';chapterContent.textContent='অধ্যায় লোড হচ্ছে...';
+  modal.classList.add('open');document.body.style.overflow='hidden';
   try{
-   const api='https://bn.wikisource.org/w/api.php?action=parse&page='+encodeURIComponent(page)+'&prop=text&format=json&origin=*';
-   const response=await fetch(api);
-   if(!response.ok)throw new Error('Network response error');
-   const data=await response.json();
-   if(data.error||!data.parse||!data.parse.text)throw new Error('এই অধ্যায়টি পাওয়া যায়নি');
-   const parsed=new DOMParser().parseFromString(data.parse.text['*'],'text/html');
-   const content=parsed.querySelector('.mw-parser-output')||parsed.body;
-   content.querySelectorAll('table,.navbox,.sistersitebox,.mw-editsection,.references,.reflist,.ws-noexport').forEach(el=>el.remove());
-   const text=content.innerText.trim();
-   if(!text)throw new Error('এই অধ্যায়ের পাঠ্য পাওয়া যায়নি');
-   modalDescription.textContent=text;
-   const controls=document.createElement('div');controls.className='reader-controls';
-   const prev=document.createElement('button');prev.className='copy-btn';prev.textContent='← আগের অধ্যায়';prev.disabled=activeChapter===0;
-   const label=document.createElement('span');label.textContent=(activeChapter+1)+' / '+devdasChapters.length+' অধ্যায়';
-   const next=document.createElement('button');next.className='copy-btn';next.textContent='পরের অধ্যায় →';next.disabled=activeChapter===devdasChapters.length-1;
-   prev.addEventListener('click',()=>{if(activeChapter>0){activeChapter--;loadChapter();}});
-   next.addEventListener('click',()=>{if(activeChapter<devdasChapters.length-1){activeChapter++;loadChapter();}});
-   controls.append(prev,label,next);readerBox.appendChild(controls);
-   const credit=document.createElement('p');credit.className='reader-credit';credit.textContent='পাঠ্যসূত্র: বাংলা উইকিসংকলন · পাবলিক ডোমেইন সংস্করণ';readerBox.appendChild(credit);
-  }catch(error){
-   modalDescription.textContent='এই মুহূর্তে অধ্যায়টি লোড করা যাচ্ছে না। ইন্টারনেট সংযোগ ঠিক আছে কি না দেখে আবার চেষ্টা করো।';
-   const retry=document.createElement('button');retry.className='copy-btn';retry.textContent='আবার চেষ্টা করুন';retry.addEventListener('click',loadChapter);readerBox.appendChild(retry);
+   const {data,error}=await client.from('chapters').select('id,chapter_number,title,content').eq('book_id',activeBook.id).eq('status','published').order('chapter_number',{ascending:true});
+   if(error)throw error;
+   chapters=data||[];
+   if(!chapters.length){chapterContent.textContent='এই বইয়ের অধ্যায় এখনো প্রকাশ করা হয়নি।';return;}
+   chapterList.innerHTML=chapters.map((ch,i)=>'<button class="chapter-btn" type="button" data-chapter="'+i+'">'+esc(ch.title||('অধ্যায় '+ch.chapter_number))+'</button>').join('');
+   chapterList.querySelectorAll('[data-chapter]').forEach(btn=>btn.addEventListener('click',()=>showChapter(Number(btn.dataset.chapter))));
+   showChapter(0);
+  }catch(err){console.error(err);chapterContent.textContent='অধ্যায় লোড করা যাচ্ছে না। পরে আবার চেষ্টা করো।';}
+ }
+ function showChapter(index){
+  const ch=chapters[index];if(!ch)return;
+  document.getElementById('chapterHeading').textContent=ch.title||('অধ্যায় '+ch.chapter_number);
+  chapterContent.textContent=ch.content||'এই অধ্যায়ে এখনো কোনো লেখা যোগ করা হয়নি।';
+  chapterList.querySelectorAll('.chapter-btn').forEach((b,i)=>b.classList.toggle('active',i===index));
+ }
+ function closeReader(){modal.classList.remove('open');document.body.style.overflow='';}
+ document.getElementById('closeReader').addEventListener('click',closeReader);
+ modal.addEventListener('click',e=>{if(e.target===modal)closeReader();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeReader();});
+ search.addEventListener('input',render);
+ document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('show'));
+ let client=null;
+ async function init(){
+  try{
+   if(!window.supabase||!window.EARENDEL_SUPABASE_URL||!window.EARENDEL_SUPABASE_ANON_KEY)throw new Error('Supabase config missing');
+   client=window.supabase.createClient(window.EARENDEL_SUPABASE_URL,window.EARENDEL_SUPABASE_ANON_KEY);
+   const {data,error}=await client.from('books').select('id,title,author,description,cover_image_url').eq('status','published').order('created_at',{ascending:false});
+   if(error)throw error;
+   books=data||[];render();
+  }catch(err){
+   console.error('EARENDEL library:',err);
+   count.textContent='LIBRARY UNAVAILABLE';
+   grid.innerHTML='<div class="state error"><div class="state-icon">!</div><h3>পাঠাগার লোড করা যায়নি</h3><p>Supabase সংযোগ বা প্রকাশিত বইয়ের তথ্য পরীক্ষা করতে হবে। পরে আবার চেষ্টা করো।</p></div>';
   }
  }
- render(catalogue);
- if(searchBox)searchBox.addEventListener('input',()=>{
-  const q=searchBox.value.trim().toLowerCase();let count=0;
-  grid.querySelectorAll('.book-card').forEach(card=>{const show=card.dataset.search.includes(q);card.style.display=show?'block':'none';if(show)count++;});
-  if(empty)empty.style.display=count?'none':'block';
- });
- // Keep published user-added books visible as catalogue entries; never send readers to a shop/search site.
- (async()=>{
-  try{
-   if(!window.supabase||!window.EARENDEL_SUPABASE_URL||!window.EARENDEL_SUPABASE_ANON_KEY)return;
-   const client=window.supabase.createClient(window.EARENDEL_SUPABASE_URL,window.EARENDEL_SUPABASE_ANON_KEY);
-   const {data,error}=await client.from('books').select('id,title,author,description,cover_image_url').eq('status','published').order('created_at',{ascending:false});
-   if(error||!data||!data.length)return;
-   const userBooks=data.map(b=>({title:b.title,author:b.author||'লেখক উল্লেখ নেই',desc:b.description||'এই বইয়ের পাঠ্য এখনো যোগ করা হয়নি।',readable:false}));
-   const combined=[...userBooks,...catalogue.filter(b=>!userBooks.some(u=>u.title===b.title))];
-   render(combined);
-  }catch(error){console.warn('Supabase unavailable; keeping local bookshelf',error);}
- })();
-})();</script>
+ init();
+})();
+</script>
 <script src="public-posts.js"></script>
 </body>
 </html>
