@@ -662,11 +662,8 @@ const observer=new IntersectionObserver(entries=>{
 },{threshold:.1});
 
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-</script>
 
 
-
-<script>
 /* EARENDEL DATABASE BOOKS + CHAPTER READER */
 (async function loadEarendelLibrary(){
  const grid=document.getElementById('bookGrid');
@@ -713,7 +710,6 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   });
  }
 })();
-</script>
 
 <!-- EARENDEL LIVE PUBLISHING -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
