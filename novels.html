@@ -679,10 +679,18 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
  const searchBox=document.getElementById('search');
  const dbReady=window.supabase&&window.EARENDEL_SUPABASE_URL&&window.EARENDEL_SUPABASE_ANON_KEY;
  if(!dbReady){console.warn('Supabase client/config unavailable; showing online catalogue.');renderOnlineCatalogue();return;}
- const db=window.supabase.createClient(window.EARENDEL_SUPABASE_URL,window.EARENDEL_SUPABASE_ANON_KEY);
- const {data:books,error}=await db.from('books').select('id,title,slug,author,description,cover_image_url,created_at').eq('status','published').order('created_at',{ascending:false});
- if(error){console.error('Could not load EARENDEL books:',error.message);renderOnlineCatalogue();return;}
- if(!books||!books.length){renderOnlineCatalogue();return;}
+ let db,books=[];
+ try{
+  db=window.supabase.createClient(window.EARENDEL_SUPABASE_URL,window.EARENDEL_SUPABASE_ANON_KEY);
+  const result=await db.from('books').select('id,title,slug,author,description,cover_image_url,created_at').eq('status','published').order('created_at',{ascending:false});
+  if(result.error)throw result.error;
+  books=result.data||[];
+ }catch(error){
+  console.error('Could not connect to EARENDEL books:',error);
+  renderOnlineCatalogue();
+  return;
+ }
+ if(!books.length){renderOnlineCatalogue();return;}
  function renderOnlineCatalogue(){
   const catalogue=[
    {title:'অপেক্ষা',author:'হুমায়ূন আহমেদ',desc:'অপেক্ষা, জীবন ও মানুষের রহস্যময় চক্র নিয়ে হুমায়ূন আহমেদের উপন্যাস।',cover:'https://baatighar.com/web/image/product.template/58584/image_1920?unique=b93083d',url:'https://baatighar.com/shop/9847016600173-58584'},
