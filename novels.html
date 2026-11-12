@@ -201,6 +201,42 @@ body{background:#03040b}
 @media(max-width:800px){.galaxy-hero{min-height:auto;background-position:58% center}.galaxy-hero .hero-grid{grid-template-columns:1fr;padding:75px 0 90px;min-height:unset}.galaxy-art{min-height:360px;transform:scale(.85)}.featured-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.galaxy-title{font-size:64px}.galaxy-art{min-height:300px;transform:scale(.7);margin:-15px -45px}.featured-grid{grid-template-columns:1fr}.feature-book{min-height:310px}.scroll-cue{display:none}}
 
+
+/* REALISTIC EARENDEL BOOKSHELF */
+.library{padding:105px 0 125px;background:radial-gradient(ellipse at 50% 10%,rgba(69,54,103,.2),transparent 48%),linear-gradient(180deg,#080912,#07070b 75%,#0c0a08);overflow:hidden}
+.shelf-heading{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:35px}
+.shelf-subtitle{font-size:12px;color:#aaa295;line-height:2;margin-top:15px;max-width:560px}
+.shelf-stamp{border:1px solid rgba(225,185,107,.35);padding:13px 17px;color:#e4c78e;text-align:center;font:15px 'Cormorant Garamond',serif;letter-spacing:3px;transform:rotate(2deg);box-shadow:0 8px 28px #0008}
+.shelf-stamp span{font:7px 'Noto Serif Bengali',serif;letter-spacing:1px;color:#92846c}
+.shelf-tools{display:flex;align-items:center;gap:18px;margin:25px 0 45px}
+.real-shelf-wrap{position:relative;padding:25px 20px 0;margin:0 -18px 65px;background:linear-gradient(180deg,#151522aa,#08080d00);border:1px solid rgba(225,185,107,.13);border-radius:5px;perspective:1400px}
+.shelf-label{font:10px 'Cormorant Garamond',serif;letter-spacing:3px;color:#d8b979;padding:0 10px 22px;border-bottom:1px solid #d4ae6633}
+.shelf-label span{color:#7b6a4b;margin-right:12px}.shelf-label i{float:right;color:#716957;font-style:normal;font-size:9px}
+.real-shelf{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,3vw,36px);align-items:end;padding:28px 15px 22px;transform-style:preserve-3d}
+.real-book{min-width:0;text-align:center;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.8,.2,1);position:relative}
+.real-book:hover{transform:translateY(-16px) rotateY(-7deg) rotateX(2deg) scale(1.035);z-index:3}
+.real-book-object{height:clamp(175px,24vw,285px);max-width:190px;margin:auto;position:relative;transform-style:preserve-3d;filter:drop-shadow(12px 17px 12px #000b);transition:filter .4s}
+.real-book:hover .real-book-object{filter:drop-shadow(22px 25px 18px #000d)}
+.real-book-object:before{content:"";position:absolute;z-index:2;left:-8px;top:3px;width:9px;height:calc(100% - 6px);background:linear-gradient(90deg,#18130e,#c2a66e 35%,#4b3924 85%);transform:skewY(-2deg);box-shadow:inset -2px 0 3px #0008}
+.real-book-object:after{content:"";position:absolute;z-index:2;right:-4px;top:4px;width:5px;height:calc(100% - 8px);background:repeating-linear-gradient(0deg,#e6dcc4 0 2px,#a89b80 2px 3px);transform:skewY(1deg)}
+.real-book-object img{width:100%;height:100%;object-fit:cover;display:block;border-radius:2px 4px 4px 2px;border:1px solid #e7d4a35c;box-shadow:inset 5px 0 10px #0008;transform:rotateY(-5deg);transition:transform .5s}
+.real-book:hover .real-book-object img{transform:rotateY(-13deg) translateZ(10px)}
+.book-spine{position:absolute;left:-7px;top:0;bottom:0;width:8px;z-index:3;writing-mode:vertical-rl;transform:rotate(180deg);font-size:6px;color:#e6d3a5;letter-spacing:1px;overflow:hidden;text-align:center;text-shadow:0 1px 3px #000}
+.real-book-info{padding-top:17px;color:#f0dfbb}
+.real-book-info b{display:block;font-size:13px;font-weight:600}
+.real-book-info small{display:block;font-size:9px;color:#9f9688;margin-top:6px;line-height:1.6}
+.shelf-plank{height:19px;margin:0 -10px;background:linear-gradient(180deg,#9b7742 0%,#4e351c 18%,#21170e 55%,#090706 100%);border-top:1px solid #e6c17c;box-shadow:0 17px 28px #000d,0 2px 15px #d0a45326;transform:perspective(600px) rotateX(12deg);position:relative;z-index:2}
+.shelf-glow{height:25px;margin:0 5%;background:#d6a44e;filter:blur(24px);opacity:.18}
+.library-lower{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:38px;margin:0 0 25px}
+.library-lower h3{font:36px 'Cormorant Garamond',serif;color:#f0dfbb;margin:8px 0}
+.library-lower p{font-size:11px;color:#9f9688;line-height:2;max-width:550px}
+.library-mark{font-size:45px;color:#d8b979;text-shadow:0 0 25px #d8b97966}
+#bookGrid .book-card{background:linear-gradient(145deg,#191a27,#0b0b11);border-color:#d4ad5a38}
+#bookGrid .cover{background:#11121b}
+#bookGrid .book-card:hover{box-shadow:0 30px 65px #000d,0 0 30px #d4ad5a1c}
+@media(max-width:760px){.shelf-heading{align-items:flex-start}.shelf-stamp{display:none}.real-shelf-wrap{margin:0 -10px 50px;padding:18px 10px 0}.real-shelf{gap:15px;padding:22px 7px 17px}.real-book-object{height:clamp(135px,32vw,210px)}.real-book-info b{font-size:11px}.real-book-info small{font-size:8px}.shelf-tools{flex-wrap:wrap}.library-lower h3{font-size:30px}}
+@media(max-width:480px){.real-shelf{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:30px}.real-book-object{height:220px;max-width:150px}.real-book:last-child{grid-column:1/-1;width:50%;justify-self:center}.shelf-label i{display:none}.library{padding:70px 0 85px}}
+
 </style>
 </head>
 <body>
@@ -241,8 +277,18 @@ body{background:#03040b}
 <section class="stats"><div class="container stats-grid"><div class="stat"><strong id="statBooks">—</strong><span>BOOKS IN LIBRARY</span></div><div class="stat"><strong>01</strong><span>QUIET READING SPACE</span></div><div class="stat"><strong>∞</strong><span>WORLDS TO DISCOVER</span></div></div></section>
 <section class="library" id="library">
  <div class="container">
-  <div class="section-top"><div><div class="eyebrow">BROWSE THE COLLECTION</div><div class="gold-line"></div><h2 class="section-title">The Bookshelf</h2></div><p class="section-intro">বইয়ের নাম অথবা লেখকের নাম লিখে খুঁজে নাও তোমার পছন্দের বই। বই খুললেই পড়ার জায়গা—সবকিছু EARENDEL-এর ভেতরেই।</p></div>
-  <div class="tools"><label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="বই বা লেখকের নাম লিখে খুঁজুন..." autocomplete="off"></label><div class="count" id="bookCount">LOADING LIBRARY</div></div>
+  <div class="shelf-heading"><div><div class="eyebrow">CURATED FOR THE CURIOUS MIND</div><div class="gold-line"></div><h2 class="section-title">The Bookshelf</h2><p class="shelf-subtitle">একটি তাক। অসংখ্য পৃথিবী। প্রতিটি মলাটের আড়ালে অপেক্ষা করছে অন্য এক গল্প।</p></div><div class="shelf-stamp">EARENDEL<br><span>PRIVATE READING ROOM · EST. 2026</span></div></div>
+  <div class="shelf-tools"><label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="বই বা লেখকের নাম লিখে খুঁজুন..." autocomplete="off"></label><div class="count" id="bookCount">LOADING LIBRARY</div></div>
+  <div class="real-shelf-wrap"><div class="shelf-label"><span>01</span> THE BENGALI CLASSICS <i>SELECTED EDITION</i></div>
+   <div class="real-shelf">
+    <article class="real-book"><div class="real-book-object"><img src="https://bookvandar.com/wp-content/uploads/2024/12/Opekkha.jpg" alt="অপেক্ষা — হুমায়ূন আহমেদ" loading="lazy"><span class="book-spine">অপেক্ষা</span></div><div class="real-book-info"><b>অপেক্ষা</b><small>হুমায়ূন আহমেদ</small></div></article>
+    <article class="real-book"><div class="real-book-object"><img src="https://media.prothomalo.com/prothomalo-bangla%2F2022-02%2Fa44ebd94-6e3d-4436-8a82-3e5942098a51%2F9.jpg" alt="নন্দিত নরকে — হুমায়ূন আহমেদ" loading="lazy"><span class="book-spine">নন্দিত নরকে</span></div><div class="real-book-info"><b>নন্দিত নরকে</b><small>হুমায়ূন আহমেদ</small></div></article>
+    <article class="real-book"><div class="real-book-object"><img src="https://anyaprokash.com/cdn/shop/files/reprint-2023coverHumayun_ShankhanilKaragar.jpg?v=1719223423" alt="শঙ্খনীল কারাগার — হুমায়ূন আহমেদ" loading="lazy"><span class="book-spine">শঙ্খনীল কারাগার</span></div><div class="real-book-info"><b>শঙ্খনীল কারাগার</b><small>হুমায়ূন আহমেদ</small></div></article>
+    <article class="real-book"><div class="real-book-object"><img src="https://static-01.daraz.com.bd/p/046bfb232c8d8e3e93001e5e48663588.jpg" alt="দেবদাস — শরৎচন্দ্র চট্টোপাধ্যায়" loading="lazy"><span class="book-spine">দেবদাস</span></div><div class="real-book-info"><b>দেবদাস</b><small>শরৎচন্দ্র চট্টোপাধ্যায়</small></div></article>
+    <article class="real-book"><div class="real-book-object"><img src="https://wafilife-media.wafilife.com/uploads/2025/12/WhatsApp-Image-2025-12-23-at-11.13.07-AM.jpeg" alt="চোখের বালি — রবীন্দ্রনাথ ঠাকুর" loading="lazy"><span class="book-spine">চোখের বালি</span></div><div class="real-book-info"><b>চোখের বালি</b><small>রবীন্দ্রনাথ ঠাকুর</small></div></article>
+   </div><div class="shelf-plank"></div><div class="shelf-glow"></div>
+  </div>
+  <div class="library-lower"><div><div class="eyebrow">YOUR PERSONAL COLLECTION</div><h3>Inside the Library</h3><p>ড্যাশবোর্ড থেকে প্রকাশিত বইগুলো এখানে যুক্ত হবে। বইয়ের অধ্যায় প্রকাশিত থাকলে এই সাইটের ভেতরেই পড়া যাবে।</p></div><div class="library-mark">✦</div></div>
   <div class="grid" id="bookGrid"><div class="state"><div class="state-icon">✧</div><h3>পাঠাগার প্রস্তুত হচ্ছে</h3><p>একটু অপেক্ষা করো...</p></div></div>
  </div>
 </section>
