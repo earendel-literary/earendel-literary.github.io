@@ -15,6 +15,7 @@
   const config=pages[path];
   if(!config&&!isHome)return;
 
+  const poetryMode=!!config&&config.category==="Poetry";
   const style=document.createElement("style");
   style.textContent=`
     .earendel-live-section{margin:38px auto 54px;max-width:1180px;padding:0 22px}
@@ -41,6 +42,28 @@
     .earendel-live-content{color:#e4dccf;font:15px/2 Inter,Arial,sans-serif;white-space:pre-wrap;overflow-wrap:anywhere}
     .earendel-live-date{color:#c7a568;font:10px Inter,Arial,sans-serif;letter-spacing:1.5px;margin-bottom:18px}
     @media(max-width:600px){.earendel-live-section{padding:0 5%;margin:28px auto 42px}.earendel-live-grid{grid-template-columns:1fr}.earendel-live-cover{height:210px}}
+    ${poetryMode?`
+    .poetry-page .earendel-live-section{max-width:1120px;margin:42px auto 75px;padding:0 22px}
+    .poetry-page .earendel-live-head{padding:28px 30px;margin-bottom:22px;border-left:2px solid #c7a568;background:linear-gradient(110deg,rgba(199,165,104,.09),transparent 75%)}
+    .poetry-page .earendel-live-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .poetry-page .earendel-live-card{border-radius:3px;background:linear-gradient(145deg,#1b1812,#0d0c0a);box-shadow:0 14px 35px rgba(0,0,0,.2);perspective:900px}
+    .poetry-page .earendel-live-card:hover{transform:translateY(-8px) rotateX(1deg);box-shadow:0 24px 50px rgba(0,0,0,.35)}
+    .poetry-page .earendel-live-body{padding:27px 29px;min-height:230px}
+    .poetry-page .earendel-live-card h3{font:500 23px/1.7 'Noto Serif Bengali',serif;margin:12px 0}
+    .poetry-page .earendel-live-card p{font:13px/2.15 'Noto Serif Bengali',serif;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .poetry-page .earendel-live-read{border-radius:2px;letter-spacing:1.4px}
+    .poetry-page .earendel-live-modal{backdrop-filter:blur(12px)}
+    .poetry-page .earendel-live-dialog{width:min(790px,100%);max-height:88vh;border-radius:3px;padding:clamp(30px,6vw,65px);background:radial-gradient(ellipse at 50% 0%,rgba(200,164,93,.09),transparent 45%),linear-gradient(145deg,#191610,#0d0c0a);box-shadow:0 30px 100px rgba(0,0,0,.7)}
+    .poetry-page .earendel-live-dialog h2{text-align:center;line-height:1.5;margin:18px 35px 28px 0}
+    .poetry-page .earendel-live-content{font:15px/2.65 'Noto Serif Bengali',serif;text-align:center;white-space:pre-wrap;color:#eee5d5;max-width:590px;margin:auto}
+    @media(max-width:650px){
+      .poetry-page .earendel-live-section{padding:0 5%;margin:30px auto 48px}
+      .poetry-page .earendel-live-grid{grid-template-columns:1fr}
+      .poetry-page .earendel-live-body{min-height:0;padding:24px}
+      .poetry-page .earendel-live-content{text-align:left;line-height:2.35}
+      .poetry-page .earendel-live-dialog{max-height:92vh;padding:40px 23px}
+    }`:''}
+
   `;
   document.head.appendChild(style);
 
