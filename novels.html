@@ -159,6 +159,48 @@ footer{background:#050505;border-top:1px solid var(--line);padding:48px 0 23px}
 @media(max-width:700px){.hero-book{transform:rotateY(-12deg) rotateX(3deg) rotateZ(-5deg)}.hero-book:hover{transform:rotateY(-8deg) rotateZ(-2deg) translateY(-5px)}.book-card{transform:none!important}.book-card:after{display:none}.cover-placeholder{transform:rotateY(-5deg) translateZ(8px)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
+
+/* EARENDEL GALAXY LIBRARY — bespoke page identity */
+:root{--gold:#e1b96b;--gold2:#f6dfaa;--line:rgba(225,185,107,.24)}
+body{background:#03040b}
+.galaxy-hero{min-height:760px;background:#03040b url('https://cdn.esahubble.org/archives/images/wallpaper4/heic0506a.jpg') center 43%/cover no-repeat;isolation:isolate;border-bottom:1px solid rgba(225,185,107,.35)}
+.galaxy-overlay{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(3,4,12,.97) 0%,rgba(3,4,12,.8) 42%,rgba(3,4,12,.2) 100%),linear-gradient(0deg,#03040b 0%,transparent 38%,rgba(3,4,12,.24) 100%)}
+.starfield{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(2px 2px at 12% 22%,#fff,transparent),radial-gradient(1px 1px at 30% 70%,#f6dfaa,transparent),radial-gradient(2px 2px at 77% 18%,#fff,transparent),radial-gradient(1px 1px at 89% 64%,#fff,transparent),radial-gradient(1px 1px at 55% 36%,#fff,transparent);background-size:270px 220px;opacity:.65}
+.galaxy-hero .hero-grid{position:relative;z-index:2;grid-template-columns:1.1fr .9fr;min-height:660px;gap:30px}
+.welcome{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--gold2);letter-spacing:3px;margin:0 0 5px 5px}
+.galaxy-title{font-family:'Cormorant Garamond',serif;font-size:clamp(65px,9vw,118px);line-height:.83;letter-spacing:1px;color:#f4d99e;text-shadow:0 5px 35px rgba(225,185,107,.28);font-weight:500}
+.galaxy-title span{display:block;font-family:'Noto Serif Bengali',serif;font-size:12px;letter-spacing:3px;line-height:2.5;color:#d7c9aa;margin-top:24px;font-style:normal}
+.hero-bengali{font-size:19px;color:#f3dfb2;margin-top:27px}
+.hero-description{max-width:490px;color:#d0c7b8}
+.hero-signature{margin-top:36px;color:#cba65d;font:10px 'Cormorant Garamond',serif;letter-spacing:5px}.hero-signature i{color:#fff;margin:0 8px}
+.galaxy-art{min-height:460px;transform-style:preserve-3d;perspective:1100px}
+.galaxy-core{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,#fff6d7 0,#e8bd70 5%,rgba(201,128,61,.48) 17%,rgba(92,75,157,.28) 38%,transparent 70%);filter:blur(4px);box-shadow:0 0 85px rgba(217,164,90,.35);animation:corePulse 7s ease-in-out infinite}
+@keyframes corePulse{50%{transform:scale(1.12);filter:blur(7px);opacity:.8}}
+.planet-ring{position:absolute;width:430px;height:170px;border:1px solid rgba(243,208,139,.55);border-radius:50%;transform:rotate(-24deg);box-shadow:0 0 25px rgba(225,185,107,.12),inset 0 0 18px rgba(225,185,107,.1)}
+.ring-two{width:510px;height:220px;transform:rotate(35deg);border-color:rgba(162,150,226,.35)}
+.floating-book{position:absolute;width:125px;height:180px;padding:10px;background:linear-gradient(140deg,#73512c,#1b1720 72%);border:1px solid rgba(255,224,160,.75);box-shadow:16px 22px 35px #000, inset 5px 0 7px #ffffff20;transform-style:preserve-3d;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:bookDrift 6s ease-in-out infinite}
+.floating-book:before{content:"";position:absolute;inset:7px;border:1px solid #f4d99e80}
+.floating-book span{font-size:22px;color:#fff0c9;position:relative}.floating-book small{font-size:9px;color:#e5c98e;margin-top:15px;position:relative}
+.book-one{left:4%;top:10%;transform:rotateY(-24deg) rotateZ(-9deg)}
+.book-two{right:2%;top:18%;background:linear-gradient(140deg,#3d526c,#111927);animation-delay:-2s;transform:rotateY(22deg) rotateZ(8deg)}
+.book-three{left:36%;bottom:3%;background:linear-gradient(140deg,#78512b,#281b15);animation-delay:-4s;transform:rotateY(-14deg) rotateZ(5deg)}
+@keyframes bookDrift{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -18px;rotate:2deg}}
+.orbit-caption{position:absolute;bottom:-8%;font:10px 'Cormorant Garamond',serif;letter-spacing:5px;color:#e4c78e}
+.scroll-cue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font:9px 'Cormorant Garamond',serif;letter-spacing:4px;color:#d7c39b;z-index:3}.scroll-cue span{display:block;text-align:center;font-size:18px;margin-top:7px}
+.featured{padding:95px 0 105px;position:relative;background:radial-gradient(ellipse at 50% 0,rgba(80,64,125,.2),transparent 55%),linear-gradient(#050611,#08080d)}
+.featured:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(1px 1px at 20% 30%,white,transparent),radial-gradient(1px 1px at 80% 60%,white,transparent);background-size:190px 160px}
+.featured .container{position:relative}
+.featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;perspective:1200px}
+.feature-book{min-height:330px;padding:20px;background:linear-gradient(145deg,#171a2a,#0b0c14);border:1px solid rgba(225,185,107,.3);box-shadow:0 25px 55px #0009,inset 0 1px #ffffff12;position:relative;transform-style:preserve-3d;transition:.45s}
+.feature-book:hover{transform:translateY(-12px) rotateX(4deg) rotateY(-3deg);box-shadow:0 35px 65px #000c,0 0 30px #d9ad5b20;border-color:#e1b96b}
+.feature-rank{font:9px 'Cormorant Garamond',serif;letter-spacing:3px;color:var(--gold);margin-bottom:18px}
+.feature-cover{height:205px;width:145px;margin:0 auto 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px;border:1px solid #e8cb8b9c;outline:5px solid #c9a45a14;box-shadow:15px 18px 25px #000b,inset 0 0 25px #0008;transform:rotateY(-10deg) translateZ(20px);background:linear-gradient(145deg,#74502c,#17100e)}
+.feature-cover small{font-size:7px;letter-spacing:2px;color:#f3d99e}.feature-cover strong{font-size:27px;color:#fff0ce;margin:28px 0 17px}.feature-cover span{font-size:9px;color:#e7d1a5}
+.sarat .feature-cover{background:linear-gradient(145deg,#425b7b,#10182a)}.rabindra .feature-cover{background:linear-gradient(145deg,#805b38,#24160f)}
+.feature-meta{text-align:center;border-top:1px solid var(--line);padding-top:14px}.feature-meta b{display:block;color:#f1dfba;font-size:13px}.feature-meta span{display:block;color:#9c958b;font-size:9px;margin-top:8px;line-height:1.8}
+@media(max-width:800px){.galaxy-hero{min-height:auto;background-position:58% center}.galaxy-hero .hero-grid{grid-template-columns:1fr;padding:75px 0 90px;min-height:unset}.galaxy-art{min-height:360px;transform:scale(.85)}.featured-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.galaxy-title{font-size:64px}.galaxy-art{min-height:300px;transform:scale(.7);margin:-15px -45px}.featured-grid{grid-template-columns:1fr}.feature-book{min-height:310px}.scroll-cue{display:none}}
+
 </style>
 </head>
 <body>
@@ -172,18 +214,30 @@ footer{background:#050505;border-top:1px solid var(--line);padding:48px 0 23px}
  </div>
 </header>
 <main>
-<section class="hero">
+<section class="hero galaxy-hero">
+ <div class="galaxy-overlay"></div><div class="starfield"></div>
  <div class="container hero-grid">
-  <div>
-   <div class="hero-label eyebrow">THE EARENDEL DIGITAL LIBRARY</div>
-   <h1>Stories that<br><span>stay with us.</span></h1>
-   <div class="hero-bengali">একটি বই, অসংখ্য অজানা পৃথিবী।</div>
-   <p class="hero-description">কিছু গল্প শুধু পড়া হয় না—অনুভব করা হয়। নিজের পছন্দের বই খুঁজে নাও, আর হারিয়ে যাও শব্দের তৈরি অন্য এক পৃথিবীতে।</p>
-   <div class="hero-actions"><a class="btn btn-gold" href="#library">EXPLORE LIBRARY ↓</a><a class="btn btn-outline" href="index.html">BACK TO HOME</a></div>
+  <div class="hero-copy">
+   <div class="hero-label eyebrow">A LITERARY UNIVERSE · EARENDEL</div>
+   <div class="welcome">WELCOME TO</div>
+   <h1 class="galaxy-title">EARENDEL<span>Beyond the pages. Beyond the stars.</span></h1>
+   <div class="hero-bengali">প্রতিটি বই—একটি নতুন মহাবিশ্ব।</div>
+   <p class="hero-description">শব্দের গ্যালাক্সিতে তোমার নিজের একটুখানি আশ্রয়। প্রিয় লেখক, অমর উপন্যাস আর অজস্র গল্পের ভেতর হারিয়ে যাও—একটি পৃষ্ঠা করে।</p>
+   <div class="hero-actions"><a class="btn btn-gold" href="#featured">DISCOVER THE COLLECTION ✦</a><a class="btn btn-outline" href="#library">ENTER THE LIBRARY ↓</a></div>
+   <div class="hero-signature">READ <i>·</i> FEEL <i>·</i> LIVE</div>
   </div>
-  <div class="hero-art"><div class="orbit"></div><div class="hero-book"><div class="hero-book-inner"><small>THE EARENDEL COLLECTION</small><strong>একটি<br>গল্পের<br>পৃথিবী</strong><span>READ · FEEL · REMEMBER</span></div></div><div class="floating-note">A quiet place for readers</div><div class="hero-caption">Turn a page. Find a world.</div></div>
+  <div class="hero-art galaxy-art"><div class="planet-ring ring-one"></div><div class="planet-ring ring-two"></div><div class="galaxy-core"></div><div class="floating-book book-one"><span>অপেক্ষা</span><small>হুমায়ূন আহমেদ</small></div><div class="floating-book book-two"><span>দেবদাস</span><small>শরৎচন্দ্র</small></div><div class="floating-book book-three"><span>শেষের কবিতা</span><small>রবীন্দ্রনাথ</small></div><div class="orbit-caption">A UNIVERSE MADE OF WORDS</div></div>
  </div>
+ <div class="scroll-cue">SCROLL TO EXPLORE <span>↓</span></div>
 </section>
+<section class="featured" id="featured"><div class="container">
+ <div class="section-top"><div><div class="eyebrow">THE STORIES EVERYONE LOVES</div><div class="gold-line"></div><h2 class="section-title">Featured Universe</h2></div><p class="section-intro">বাংলা সাহিত্যের তিন কিংবদন্তি লেখকের কিছু জনপ্রিয় উপন্যাস—একই ছাদের নিচে।</p></div>
+ <div class="featured-grid">
+  <article class="feature-book humayun"><div class="feature-rank">01 · MOST LOVED</div><div class="feature-cover"><small>EARENDEL CLASSICS</small><strong>অপেক্ষা</strong><span>হুমায়ূন আহমেদ</span></div><div class="feature-meta"><b>হুমায়ূন আহমেদ</b><span>অপেক্ষা · নন্দিত নরকে · শঙ্খনীল কারাগার</span></div></article>
+  <article class="feature-book sarat"><div class="feature-rank">02 · TIMELESS</div><div class="feature-cover"><small>THE CLASSIC COLLECTION</small><strong>দেবদাস</strong><span>শরৎচন্দ্র চট্টোপাধ্যায়</span></div><div class="feature-meta"><b>শরৎচন্দ্র চট্টোপাধ্যায়</b><span>দেবদাস · শ্রীকান্ত · পরিণীতা</span></div></article>
+  <article class="feature-book rabindra"><div class="feature-rank">03 · EVERGREEN</div><div class="feature-cover"><small>THE MASTERPIECE</small><strong>শেষের কবিতা</strong><span>রবীন্দ্রনাথ ঠাকুর</span></div><div class="feature-meta"><b>রবীন্দ্রনাথ ঠাকুর</b><span>চোখের বালি · গোরা · শেষের কবিতা</span></div></article>
+ </div>
+</div></section>
 <section class="stats"><div class="container stats-grid"><div class="stat"><strong id="statBooks">—</strong><span>BOOKS IN LIBRARY</span></div><div class="stat"><strong>01</strong><span>QUIET READING SPACE</span></div><div class="stat"><strong>∞</strong><span>WORLDS TO DISCOVER</span></div></div></section>
 <section class="library" id="library">
  <div class="container">
