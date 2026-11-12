@@ -237,6 +237,47 @@ body{background:#03040b}
 @media(max-width:760px){.shelf-heading{align-items:flex-start}.shelf-stamp{display:none}.real-shelf-wrap{margin:0 -10px 50px;padding:18px 10px 0}.real-shelf{gap:15px;padding:22px 7px 17px}.real-book-object{height:clamp(135px,32vw,210px)}.real-book-info b{font-size:11px}.real-book-info small{font-size:8px}.shelf-tools{flex-wrap:wrap}.library-lower h3{font-size:30px}}
 @media(max-width:480px){.real-shelf{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:30px}.real-book-object{height:220px;max-width:150px}.real-book:last-child{grid-column:1/-1;width:50%;justify-self:center}.shelf-label i{display:none}.library{padding:70px 0 85px}}
 
+
+/* FEATURED UNIVERSE — immersive 3D literary showcase */
+.universe-showcase{position:relative;isolation:isolate;overflow:hidden;padding:112px 0 105px;background:radial-gradient(ellipse at 50% 48%,#18213b 0%,#090d1c 43%,#03040b 78%)}
+.universe-showcase:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.55;background-image:radial-gradient(1px 1px at 8% 18%,#fff,transparent),radial-gradient(2px 2px at 26% 73%,#f6dfaa,transparent),radial-gradient(1px 1px at 48% 12%,#fff,transparent),radial-gradient(2px 2px at 76% 28%,#fff,transparent),radial-gradient(1px 1px at 91% 77%,#f6dfaa,transparent);background-size:230px 190px}
+.universe-container{position:relative}
+.universe-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:12px}
+.universe-heading .section-title{color:#f5ead4}
+.universe-heading>p{max-width:390px;color:#a9b0c2;font-size:12px;line-height:2.1;margin-bottom:5px}
+.universe-stage{height:590px;position:relative;display:flex;align-items:center;justify-content:center;perspective:1500px;transform-style:preserve-3d}
+.universe-orbit{position:absolute;left:50%;top:49%;border:1px solid rgba(225,185,107,.18);border-radius:50%;pointer-events:none}
+.orbit-a{width:750px;height:290px;transform:translate(-50%,-50%) rotate(-13deg);box-shadow:0 0 45px #8a73c51a}
+.orbit-b{width:600px;height:390px;transform:translate(-50%,-50%) rotate(28deg);border-color:#8297d01c}
+.universe-star{position:absolute;color:#f5d99c;text-shadow:0 0 18px #e8c879;animation:universeTwinkle 3s ease-in-out infinite}
+.star-a{left:13%;top:23%;font-size:20px}.star-b{right:15%;top:18%;font-size:27px;animation-delay:1s}.star-c{right:23%;bottom:17%;font-size:15px;animation-delay:1.8s}
+@keyframes universeTwinkle{50%{opacity:.3;transform:scale(.7)}}
+.universe-card{position:absolute;width:265px;min-height:410px;padding:17px 17px 20px;border:1px solid #d8bb7952;background:linear-gradient(145deg,#1d2940eF,#0b1020f5 68%);box-shadow:0 30px 70px #000b,inset 0 1px #ffffff16;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.2,.75,.25,1),box-shadow .5s,border-color .5s;backdrop-filter:blur(12px)}
+.universe-card:hover{z-index:5;border-color:#f1d28c;box-shadow:0 40px 90px #000e,0 0 38px #d9b76a2b}
+.universe-main{z-index:3;transform:translateY(-2px) translateZ(55px) rotateY(0)}
+.universe-main:hover{transform:translateY(-17px) translateZ(85px) rotateY(-3deg)}
+.universe-left{z-index:2;transform:translateX(-245px) translateY(25px) rotateY(17deg) rotateZ(-3deg) scale(.88);opacity:.92}
+.universe-left:hover{transform:translateX(-260px) translateY(5px) rotateY(8deg) rotateZ(-1deg) scale(.93)}
+.universe-right{z-index:2;transform:translateX(245px) translateY(25px) rotateY(-17deg) rotateZ(3deg) scale(.88);opacity:.92}
+.universe-right:hover{transform:translateX(260px) translateY(5px) rotateY(-8deg) rotateZ(1deg) scale(.93)}
+.universe-number{font:10px 'Cormorant Garamond',serif;letter-spacing:2px;color:#f0cf87;padding-bottom:13px;border-bottom:1px solid #d8bb7933}
+.universe-number span{color:#aeb5c5;font-size:9px}
+.universe-book-wrap{height:220px;display:flex;align-items:center;justify-content:center;perspective:800px}
+.universe-book{height:190px;width:132px;position:relative;transform:rotateY(-13deg) rotateX(2deg);transform-style:preserve-3d;filter:drop-shadow(15px 18px 13px #000b);transition:transform .6s}
+.universe-card:hover .universe-book{transform:rotateY(-4deg) rotateX(0) translateY(-7px) translateZ(18px)}
+.universe-book img{width:100%;height:100%;object-fit:cover;display:block;border:1px solid #e8d39a77;border-radius:2px 4px 4px 2px}
+.universe-book-edge{position:absolute;right:-7px;top:3px;width:7px;height:calc(100% - 6px);background:repeating-linear-gradient(0deg,#d9c9a6 0 2px,#8d8069 2px 3px);transform:translateZ(-3px)}
+.universe-details{text-align:center}
+.universe-kicker{font:9px 'Cormorant Garamond',serif;letter-spacing:2px;color:#d9b96f}
+.universe-details h3{font-size:25px;font-weight:600;color:#fff0d0;margin:8px 0}
+.universe-details p{font-size:10px;line-height:1.9;color:#aab1c1;min-height:38px}
+.universe-tags{display:flex;justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap}
+.universe-tags span{font:8px 'Cormorant Garamond',serif;letter-spacing:1px;color:#e4cc98;border:1px solid #d8bb7940;padding:5px 8px}
+.universe-caption{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:13px;white-space:nowrap;font:10px 'Cormorant Garamond',serif;letter-spacing:4px;color:#b7a477}
+.universe-caption span{width:35px;height:1px;background:#c9a65c77}
+@media(max-width:850px){.universe-showcase{padding:85px 0}.universe-stage{height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:35px 0 50px}.universe-orbit{width:90%;height:65%}.universe-card{position:relative;inset:auto;width:100%;min-height:390px;transform:none!important;opacity:1}.universe-main{grid-column:1/-1;width:min(330px,100%);justify-self:center;grid-row:1}.universe-left{grid-column:1;grid-row:2}.universe-right{grid-column:2;grid-row:2}.universe-card:hover{transform:translateY(-7px)!important}.universe-caption{bottom:0}}
+@media(max-width:560px){.universe-heading{display:block}.universe-heading>p{margin-top:17px}.universe-stage{grid-template-columns:1fr;gap:18px;padding-bottom:48px}.universe-card,.universe-main,.universe-left,.universe-right{grid-column:1;grid-row:auto;width:min(330px,100%);justify-self:center;min-height:unset}.universe-book-wrap{height:205px}.universe-book{height:178px;width:124px}.universe-caption{font-size:8px;letter-spacing:2px;gap:8px}.universe-caption span{width:18px}}
+
 </style>
 </head>
 <body>
@@ -266,14 +307,33 @@ body{background:#03040b}
  </div>
  <div class="scroll-cue">SCROLL TO EXPLORE <span>↓</span></div>
 </section>
-<section class="featured" id="featured"><div class="container">
- <div class="section-top"><div><div class="eyebrow">THE STORIES EVERYONE LOVES</div><div class="gold-line"></div><h2 class="section-title">Featured Universe</h2></div><p class="section-intro">বাংলা সাহিত্যের তিন কিংবদন্তি লেখকের কিছু জনপ্রিয় উপন্যাস—একই ছাদের নিচে।</p></div>
- <div class="featured-grid">
-  <article class="feature-book humayun"><div class="feature-rank">01 · MOST LOVED</div><div class="feature-cover"><small>EARENDEL CLASSICS</small><strong>অপেক্ষা</strong><span>হুমায়ূন আহমেদ</span></div><div class="feature-meta"><b>হুমায়ূন আহমেদ</b><span>অপেক্ষা · নন্দিত নরকে · শঙ্খনীল কারাগার</span></div></article>
-  <article class="feature-book sarat"><div class="feature-rank">02 · TIMELESS</div><div class="feature-cover"><small>THE CLASSIC COLLECTION</small><strong>দেবদাস</strong><span>শরৎচন্দ্র চট্টোপাধ্যায়</span></div><div class="feature-meta"><b>শরৎচন্দ্র চট্টোপাধ্যায়</b><span>দেবদাস · শ্রীকান্ত · পরিণীতা</span></div></article>
-  <article class="feature-book rabindra"><div class="feature-rank">03 · EVERGREEN</div><div class="feature-cover"><small>THE MASTERPIECE</small><strong>শেষের কবিতা</strong><span>রবীন্দ্রনাথ ঠাকুর</span></div><div class="feature-meta"><b>রবীন্দ্রনাথ ঠাকুর</b><span>চোখের বালি · গোরা · শেষের কবিতা</span></div></article>
+<section class="featured universe-showcase" id="featured">
+ <div class="container universe-container">
+  <div class="universe-heading">
+   <div><div class="eyebrow">BEYOND THE PAGES · INTO THE STORIES</div><div class="gold-line"></div><h2 class="section-title">Featured Universe</h2></div>
+   <p>কিছু গল্প শুধু পড়া হয় না—মনের ভেতর একটি আলাদা পৃথিবী তৈরি করে। সেইসব কালজয়ী উপন্যাসের ছোট্ট এক মহাবিশ্ব।</p>
+  </div>
+  <div class="universe-stage">
+   <div class="universe-orbit orbit-a"></div><div class="universe-orbit orbit-b"></div><div class="universe-star star-a">✦</div><div class="universe-star star-b">✧</div><div class="universe-star star-c">✦</div>
+   <article class="universe-card universe-main">
+    <div class="universe-number">01 <span>· MOST LOVED</span></div>
+    <div class="universe-book-wrap"><div class="universe-book"><img src="https://bookvandar.com/wp-content/uploads/2024/12/Opekkha.jpg" alt="অপেক্ষা উপন্যাসের প্রচ্ছদ"><span class="universe-book-edge"></span></div></div>
+    <div class="universe-details"><span class="universe-kicker">HUMAYUN AHMED</span><h3>অপেক্ষা</h3><p>নীরবতা, অপেক্ষা আর জীবনের অদ্ভুত সব অনুভূতির গল্প।</p><div class="universe-tags"><span>FAMILY</span><span>EMOTION</span><span>CLASSIC</span></div></div>
+   </article>
+   <article class="universe-card universe-left">
+    <div class="universe-number">02 <span>· TIMELESS CLASSIC</span></div>
+    <div class="universe-book-wrap"><div class="universe-book"><img src="https://static-01.daraz.com.bd/p/046bfb232c8d8e3e93001e5e48663588.jpg" alt="দেবদাস উপন্যাসের প্রচ্ছদ"><span class="universe-book-edge"></span></div></div>
+    <div class="universe-details"><span class="universe-kicker">SARATCHANDRA CHATTOPADHYAY</span><h3>দেবদাস</h3><p>ভালোবাসা, অভিমান ও অপূর্ণতার এক অমর আখ্যান।</p><div class="universe-tags"><span>ROMANCE</span><span>TRAGEDY</span></div></div>
+   </article>
+   <article class="universe-card universe-right">
+    <div class="universe-number">03 <span>· EVERGREEN</span></div>
+    <div class="universe-book-wrap"><div class="universe-book"><img src="https://wafilife-media.wafilife.com/uploads/2025/12/WhatsApp-Image-2025-12-23-at-11.13.07-AM.jpeg" alt="চোখের বালি উপন্যাসের প্রচ্ছদ"><span class="universe-book-edge"></span></div></div>
+    <div class="universe-details"><span class="universe-kicker">RABINDRANATH TAGORE</span><h3>চোখের বালি</h3><p>সম্পর্ক, সমাজ আর মানুষের মনের জটিল বুনন।</p><div class="universe-tags"><span>CLASSIC</span><span>DRAMA</span></div></div>
+   </article>
+   <div class="universe-caption"><span></span> THREE STORIES · INFINITE FEELINGS <span></span></div>
+  </div>
  </div>
-</div></section>
+</section>
 <section class="stats"><div class="container stats-grid"><div class="stat"><strong id="statBooks">—</strong><span>BOOKS IN LIBRARY</span></div><div class="stat"><strong>01</strong><span>QUIET READING SPACE</span></div><div class="stat"><strong>∞</strong><span>WORLDS TO DISCOVER</span></div></div></section>
 <section class="library" id="library">
  <div class="container">
