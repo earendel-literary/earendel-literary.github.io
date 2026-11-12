@@ -3,105 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090b12">
-<title>অপেক্ষা — EARENDEL Reading Room</title>
+<meta name="theme-color" content="#08090e">
+<meta name="description" content="অপেক্ষা — হুমায়ূন আহমেদের উপন্যাসের জন্য EARENDEL-এর বিশেষ Reading Room।">
+<title>অপেক্ষা — EARENDEL Signature Reading Room</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#d9b779;--paper:#eee5d4;--muted:#aaa6a0;--line:rgba(217,183,121,.2);--night:#090b12}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -12%,#26304b 0,#111727 34%,#080a10 76%);color:var(--paper);font-family:'Noto Serif Bengali',serif;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.38;background-image:radial-gradient(1px 1px at 12% 18%,#fff,transparent),radial-gradient(2px 2px at 78% 12%,#e8d4a1,transparent),radial-gradient(1px 1px at 53% 72%,#fff,transparent),radial-gradient(1px 1px at 91% 84%,#fff,transparent);background-size:300px 260px;animation:stars 22s linear infinite}
-@keyframes stars{to{background-position:300px 260px}}
-a{color:inherit;text-decoration:none}
-.top{position:relative;z-index:3;width:min(1240px,92%);margin:auto;padding:23px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);transition:.35s}
-.logo{font:600 27px 'Cormorant Garamond',serif;letter-spacing:5px;color:#f4dfb5}
-.back{font-size:11px;letter-spacing:1px;color:var(--gold);border:1px solid var(--line);padding:10px 15px;transition:.25s}
-.back:hover{background:var(--gold);color:#090b12}
-main{position:relative;z-index:1;width:min(1160px,92%);margin:auto;padding:58px 0 76px}
-.intro{text-align:center;margin:0 auto 35px;animation:rise .75s ease both}
-.eyebrow{font:11px 'Cormorant Garamond',serif;letter-spacing:5px;color:var(--gold)}
-h1{font:400 clamp(55px,8vw,92px)/1.25 'Noto Serif Bengali',serif;margin:13px 0 3px;color:#f6e7ca;text-shadow:0 10px 45px #d2a64a25}
-.author{font-size:13px;color:#d5c7a8;letter-spacing:1px}
-.rule{width:64px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto}
-.desc{max-width:590px;margin:auto;color:#aaa6a0;font-size:12px;line-height:2.1}
-.book-stage{position:relative;padding:clamp(10px,2vw,20px);border:1px solid rgba(217,183,121,.33);background:linear-gradient(145deg,rgba(30,35,51,.93),rgba(9,11,18,.97));box-shadow:0 35px 100px #0009,0 0 70px #d5aa4a0b;border-radius:7px;animation:rise .9s .12s ease both}
-.book-stage:before{content:"";position:absolute;inset:6px;border:1px solid rgba(217,183,121,.09);border-radius:4px;pointer-events:none}
-.reader-top{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:3px 5px 16px;color:var(--gold);font:11px 'Cormorant Garamond',serif;letter-spacing:2px}
-.live{display:inline-flex;align-items:center;gap:8px;color:#b5c6b4;letter-spacing:1px}
-.live i{width:6px;height:6px;border-radius:50%;background:#91c9a0;box-shadow:0 0 11px #91c9a0;display:inline-block}
-.tools{position:relative;display:flex;flex-wrap:wrap;gap:8px;padding:0 4px 13px}
-.tool{appearance:none;border:1px solid rgba(217,183,121,.25);background:#ffffff08;color:#d9c7a4;padding:9px 13px;font:11px 'Noto Serif Bengali',serif;cursor:pointer;transition:.2s;border-radius:3px}
-.tool:hover,.tool:focus-visible{border-color:var(--gold);color:#fff1d2;background:#d9b77914;outline:none}
-.viewer-wrap{position:relative;overflow:hidden;border:1px solid rgba(217,183,121,.24);background:#070910;border-radius:3px;box-shadow:inset 0 0 35px #000}
-.viewer{display:block;width:100%;height:min(78vh,900px);min-height:560px;border:0;background:#070910}
-.reader-caption{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:13px 5px 2px;color:#8f8b87;font-size:10px;line-height:1.8}
-.reader-caption span:last-child{color:#c4ad83;white-space:nowrap}
-.quote{max-width:700px;margin:34px auto 0;text-align:center;color:#c8bda9;font-size:12px;line-height:2.1}
-.quote-mark{font:32px 'Cormorant Garamond',serif;color:var(--gold);display:block;line-height:1}
-footer{position:relative;z-index:1;text-align:center;padding:24px;border-top:1px solid var(--line);font:11px 'Cormorant Garamond',serif;letter-spacing:3px;color:#858392}
-body.warm{background:radial-gradient(ellipse at 50% -12%,#45372b 0,#211b18 38%,#100e0c 78%);--gold:#d8b77c;--paper:#f4e8d4}
-body.immersive .top,body.immersive .intro,body.immersive footer,body.immersive .quote{display:none}
-body.immersive main{width:min(1280px,96%);padding:18px 0}
-body.immersive .book-stage{padding:10px}
-body.immersive .viewer{height:calc(100vh - 125px);min-height:420px}
-@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:650px){.top{padding:17px 0}.logo{font-size:22px}.back{font-size:9px;padding:9px 11px}main{padding:43px 0 55px}.viewer{height:72vh;min-height:470px}.reader-top{font-size:9px}.tool{font-size:10px;padding:8px 10px}.reader-caption{font-size:9px;align-items:flex-start}}
+:root{--gold:#d8b879;--gold2:#f1dfb8;--ink:#08090e;--muted:#aaa5a0;--line:rgba(216,184,121,.22);--panel:rgba(20,22,30,.82)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:#08090e;color:#f1eadc;font-family:'Noto Serif Bengali',serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 76% 18%,#42351d35,transparent 32%),radial-gradient(ellipse at 15% 62%,#26324a44,transparent 36%),linear-gradient(130deg,#0b0d14,#08090e 60%,#100e0b)}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.23;background-image:radial-gradient(1px 1px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 78% 12%,#e8d4a1,transparent),radial-gradient(2px 2px at 53% 72%,#fff,transparent),radial-gradient(1px 1px at 91% 84%,#fff,transparent);background-size:280px 240px}
+a{color:inherit;text-decoration:none}button{font:inherit}
+.site-head,.page,.site-foot{position:relative;z-index:1}
+.site-head{width:min(1320px,91%);margin:auto;height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{font:600 29px 'Cormorant Garamond',serif;letter-spacing:6px;color:var(--gold2)}
+.head-right{display:flex;align-items:center;gap:18px}.edition{font:10px 'Cormorant Garamond',serif;letter-spacing:3px;color:#9d947f}
+.back{font-size:10px;letter-spacing:1px;color:var(--gold);border:1px solid var(--line);padding:11px 15px;transition:.25s}.back:hover{background:var(--gold);color:#090a0f}
+.page{width:min(1240px,91%);margin:auto;padding:48px 0 90px}
+.breadcrumb{font:10px 'Cormorant Garamond',serif;letter-spacing:2px;color:#777b88;margin-bottom:35px}
+.hero{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:clamp(35px,7vw,100px);min-height:540px;padding:15px 5% 55px}
+.art-zone{min-height:480px;display:grid;place-items:center;perspective:1400px;position:relative}
+.art-glow{position:absolute;width:370px;height:370px;border-radius:50%;background:radial-gradient(circle,#c59b4b26,transparent 68%);filter:blur(8px)}
+.orbit{position:absolute;width:390px;height:390px;border:1px solid #d8b87920;border-radius:50%;transform:rotateX(70deg) rotateZ(-20deg);box-shadow:0 0 0 28px #d8b87908,0 0 0 58px #d8b87905}
+.orbit:after{content:"";position:absolute;width:7px;height:7px;background:var(--gold);border-radius:50%;top:25px;left:65px;box-shadow:0 0 20px 5px #d8b87977}
+.book-wrap{position:relative;width:245px;height:355px;transform-style:preserve-3d;transform:rotateY(-24deg) rotateX(5deg) rotateZ(-3deg);transition:transform .8s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(30px 35px 24px #000b);animation:float 6s ease-in-out infinite}
+.book-wrap:hover{transform:rotateY(-10deg) rotateX(2deg) rotateZ(0deg) translateY(-8px)}
+.book-cover{position:absolute;inset:0 0 0 18px;overflow:hidden;border:1px solid #d9bc7b99;border-radius:2px 5px 5px 2px;background:#30291d;transform:translateZ(15px);box-shadow:inset 7px 0 12px #0005,inset -2px 0 8px #fff2}
+.book-cover img{width:100%;height:100%;display:block;object-fit:cover}
+.book-pages{position:absolute;top:5px;bottom:5px;left:7px;width:19px;transform:translateZ(3px);background:repeating-linear-gradient(90deg,#e8dfcb 0,#e8dfcb 1px,#b7ad99 2px,#f8f0df 3px);box-shadow:inset 3px 0 5px #0003}
+.book-spine{position:absolute;top:0;bottom:0;left:0;width:25px;transform:rotateY(-90deg) translateZ(12px);transform-origin:left;background:linear-gradient(90deg,#21190f,#70532b 45%,#2b2114);border:1px solid #c6a45e66;display:flex;align-items:center;justify-content:center;color:#f1dba9;writing-mode:vertical-rl;font-size:12px;letter-spacing:4px;text-shadow:0 2px 5px #000}
+.book-edge{position:absolute;top:4px;bottom:4px;right:-8px;width:15px;transform:rotateY(90deg) translateZ(0);transform-origin:right;background:repeating-linear-gradient(0deg,#d6c9ad 0,#d6c9ad 2px,#a99d86 3px,#eee5d4 4px)}
+.book-shadow{position:absolute;width:280px;height:55px;bottom:37px;border-radius:50%;background:#000b;filter:blur(24px);transform:rotate(-7deg)}
+.art-caption{position:absolute;bottom:9px;font:10px 'Cormorant Garamond',serif;letter-spacing:4px;color:#9f8d69}
+.hero-copy{max-width:610px}.kicker{font:11px 'Cormorant Garamond',serif;letter-spacing:5px;color:var(--gold);display:flex;align-items:center;gap:13px}.kicker:before{content:"";width:36px;height:1px;background:var(--gold)}
+h1{font-size:clamp(56px,8vw,94px);font-weight:500;line-height:1.2;margin:22px 0 0;color:#f4e8d0;text-shadow:0 10px 45px #c99e4d22}
+.author{font-size:14px;color:#d3bd91;margin-top:3px;letter-spacing:2px}
+.gold-rule{width:70px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:25px 0}
+.synopsis{font-size:13px;line-height:2.2;color:#aaa7a2;max-width:490px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin:25px 0 30px}.meta span{border:1px solid #d8b87936;background:#d8b8790a;padding:8px 12px;color:#c5b18b;font-size:9px;letter-spacing:1px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{border:1px solid #d8b87977;background:transparent;color:var(--gold2);padding:14px 20px;font-size:10px;letter-spacing:1.5px;cursor:pointer;transition:.25s}.btn.primary{background:linear-gradient(120deg,#e2c58d,#b68b49);color:#15110a;border-color:transparent;font-weight:600}.btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px #0007}.btn.secondary:hover{background:#d8b87917}
+.signature{margin-top:30px;color:#716d69;font:10px 'Cormorant Garamond',serif;letter-spacing:3px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:10px 0 55px}
+.details{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;border:1px solid var(--line);background:var(--line);margin:0 0 58px}
+.detail{background:#0e1017;padding:22px 25px}.detail small{display:block;font:10px 'Cormorant Garamond',serif;letter-spacing:3px;color:#9a8968;margin-bottom:8px}.detail strong{font-size:12px;color:#e4d8c3;font-weight:500}
+.reader-section{scroll-margin-top:30px;border:1px solid #d8b87945;background:linear-gradient(145deg,#171923ed,#0b0d13f5);padding:clamp(13px,2.5vw,28px);box-shadow:0 35px 100px #0008;position:relative}
+.reader-section:before{content:"";position:absolute;inset:7px;border:1px solid #d8b87914;pointer-events:none}
+.reader-heading{position:relative;display:flex;justify-content:space-between;align-items:end;gap:20px;margin:0 5px 18px}.reader-heading small{font:10px 'Cormorant Garamond',serif;letter-spacing:4px;color:var(--gold)}.reader-heading h2{font-size:23px;font-weight:500;margin:7px 0 0}.reader-heading p{font-size:10px;color:#898b92;margin:0}
+.controlbar{position:relative;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}.control{border:1px solid #d8b87930;background:#ffffff08;color:#d9c7a4;padding:9px 12px;font-size:10px;cursor:pointer;transition:.2s}.control:hover,.control[aria-pressed=true]{border-color:var(--gold);background:#d8b87916;color:#fff0d0}
+.reader-frame{position:relative;background:#080a10;border:1px solid #d8b87929;min-height:600px;overflow:hidden}
+.reader-frame iframe{display:block;width:100%;height:min(82vh,950px);min-height:600px;border:0;background:#080a10}
+.reader-placeholder{min-height:600px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:30px;background:radial-gradient(ellipse at center,#24202a,#090b11 72%)}
+.placeholder-book{font-size:40px;color:var(--gold);margin-bottom:15px}.reader-placeholder h3{font-size:22px;font-weight:500;margin:0 0 10px}.reader-placeholder p{font-size:11px;line-height:2;color:#a8a3a0;max-width:430px;margin:0 0 20px}
+.reader-note{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:13px 4px 0;color:#85818a;font-size:9px;line-height:1.8}
+.hidden{display:none!important}
+.quote-card{max-width:700px;margin:55px auto 0;text-align:center;padding:25px}.quote-card .mark{font:44px 'Cormorant Garamond',serif;color:var(--gold);line-height:1}.quote-card p{font-size:13px;line-height:2;color:#c2b7a3}.quote-card small{font:9px 'Cormorant Garamond',serif;letter-spacing:3px;color:#8c806a}
+.site-foot{text-align:center;border-top:1px solid var(--line);padding:25px;font:10px 'Cormorant Garamond',serif;letter-spacing:3px;color:#777782}
+body.warm{background:#17120e}body.warm:before{background:radial-gradient(ellipse at 76% 18%,#78512c35,transparent 35%),linear-gradient(130deg,#1d1712,#100d0a 65%)}body.immersive .site-head,body.immersive .hero,body.immersive .divider,body.immersive .details,body.immersive .quote-card,body.immersive .site-foot{display:none}body.immersive .page{width:min(1440px,97%);padding:15px 0}body.immersive .reader-section{padding:10px}body.immersive .reader-frame iframe{height:calc(100vh - 170px);min-height:420px}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@media(max-width:850px){.hero{grid-template-columns:1fr;gap:15px;padding:5px 3% 45px}.art-zone{min-height:420px;grid-row:1}.hero-copy{text-align:center;margin:auto}.kicker{justify-content:center}.gold-rule{margin:22px auto}.synopsis{margin:auto}.actions,.meta{justify-content:center}.signature{text-align:center}.details{grid-template-columns:1fr}.detail{padding:17px 20px}.edition{display:none}}
+@media(max-width:560px){.site-head{height:70px}.brand{font-size:24px}.back{font-size:9px;padding:9px}.page{padding:30px 0 60px}.breadcrumb{margin-bottom:15px}.art-zone{min-height:360px}.book-wrap{transform:scale(.82) rotateY(-24deg) rotateX(5deg) rotateZ(-3deg)}.orbit{width:310px;height:310px}.art-caption{font-size:8px}.hero{padding-bottom:35px}h1{font-size:58px}.reader-heading{display:block}.reader-heading p{margin-top:8px}.reader-frame,.reader-frame iframe,.reader-placeholder{min-height:470px}.reader-frame iframe{height:72vh}.control{font-size:9px;padding:8px 10px}.reader-note{font-size:8px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header class="top"><a class="logo" href="index.html">EARENDEL</a><a class="back" href="novels.html">← THE BOOKSHELF</a></header>
-<main>
-<section class="intro">
- <div class="eyebrow">EARENDEL · A QUIET READING SPACE</div>
- <h1>অপেক্ষা</h1>
- <div class="author">হুমায়ূন আহমেদ</div>
- <div class="rule"></div>
- <p class="desc">একটু নিরিবিলি সময়, এক কাপ চা, আর গল্পের পাতায় হারিয়ে যাওয়া। নিজের মতো করে পড়ো—কোনো তাড়া নেই।</p>
-</section>
-<section class="book-stage" id="bookStage">
- <div class="reader-top"><span>✦ DIGITAL READING EDITION</span><span class="live"><i></i> READER VIEW</span></div>
- <div class="tools">
-  <button class="tool" id="warmBtn" type="button" aria-pressed="false">☼ উষ্ণ আলো</button>
-  <button class="tool" id="focusBtn" type="button" aria-pressed="false">⛶ নিরিবিলি পড়া</button>
-  <button class="tool" id="fullBtn" type="button">⛶ বড় পর্দা</button>
- </div>
- <div class="viewer-wrap" id="viewerWrap">
-  <iframe class="viewer" id="bookFrame" src="https://www.slideshare.net/slideshow/embed_code/260428577" title="অপেক্ষা — embedded book reader" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
- </div>
- <div class="reader-caption"><span>বইটি এই পেজের ভেতরেই পড়ার জন্য সাজানো হয়েছে।</span><span>EARENDEL READING ROOM</span></div>
-</section>
-<p class="quote"><span class="quote-mark">“</span>গল্পের পাতায় সময় একটু ধীরে বয়ে যাক।<span class="quote-mark">”</span></p>
+<header class="site-head">
+ <a class="brand" href="index.html">EARENDEL</a>
+ <div class="head-right"><span class="edition">SIGNATURE DIGITAL EDITION · 01</span><a class="back" href="novels.html">← THE BOOKSHELF</a></div>
+</header>
+<main class="page">
+ <div class="breadcrumb">EARENDEL <span> / </span> NOVELS <span> / </span> <span style="color:var(--gold)">অপেক্ষা</span></div>
+ <section class="hero">
+  <div class="art-zone">
+   <div class="art-glow"></div><div class="orbit"></div>
+   <div class="book-shadow"></div>
+   <div class="book-wrap" aria-label="অপেক্ষা উপন্যাসের ত্রিমাত্রিক প্রচ্ছদ">
+    <div class="book-pages"></div><div class="book-spine">অপেক্ষা</div>
+    <div class="book-cover"><img src="https://bookvandar.com/wp-content/uploads/2024/12/Opekkha.jpg" alt="অপেক্ষা বইয়ের প্রচ্ছদ"></div><div class="book-edge"></div>
+   </div>
+   <div class="art-caption">A STORY THAT STAYS WITH YOU</div>
+  </div>
+  <div class="hero-copy">
+   <div class="kicker">EARENDEL SIGNATURE READING ROOM</div>
+   <h1>অপেক্ষা</h1><div class="author">হুমায়ূন আহমেদ</div>
+   <div class="gold-rule"></div>
+   <p class="synopsis">কিছু গল্পের সৌন্দর্য তার নীরবতায়, কিছু অনুভূতির নাম হয় অপেক্ষা। এই বিশেষ পাঠকক্ষে নিজের মতো সময় নিয়ে গল্পের জগতে ডুবে যাও।</p>
+   <div class="meta"><span>বাংলা উপন্যাস</span><span>হুমায়ূন আহমেদ</span><span>READING EDITION</span></div>
+   <div class="actions"><button class="btn primary" id="startReading">✦ পড়া শুরু করো</button><button class="btn secondary" id="coverAgain">প্রচ্ছদ দেখো</button></div>
+   <div class="signature">READ SLOWLY · FEEL DEEPLY · REMEMBER ALWAYS</div>
+  </div>
+ </section>
+ <div class="divider"></div>
+ <section class="details" aria-label="বইয়ের তথ্য">
+  <div class="detail"><small>THE AUTHOR</small><strong>হুমায়ূন আহমেদ</strong></div>
+  <div class="detail"><small>THE COLLECTION</small><strong>EARENDEL Bengali Literature</strong></div>
+  <div class="detail"><small>YOUR SPACE</small><strong>নিজের মতো করে পড়ার নিরিবিলি জায়গা</strong></div>
+ </section>
+ <section class="reader-section" id="reader">
+  <div class="reader-heading"><div><small>✦ THE READING EXPERIENCE</small><h2>পাঠের আসর</h2></div><p>সময় নিয়ে পড়ো। তাড়া নেই।</p></div>
+  <div class="controlbar">
+   <button class="control" id="warmBtn" type="button" aria-pressed="false">☼ উষ্ণ আলো</button>
+   <button class="control" id="focusBtn" type="button" aria-pressed="false">⛶ নিরিবিলি মোড</button>
+   <button class="control" id="fullBtn" type="button">⛶ ফুলস্ক্রিন</button>
+   <button class="control" id="reloadBtn" type="button">↻ রিডার রিফ্রেশ</button>
+  </div>
+  <div class="reader-frame" id="readerFrame">
+   <div class="reader-placeholder" id="readerPlaceholder">
+    <div class="placeholder-book">✦</div><h3>অপেক্ষার পাতায় স্বাগতম</h3>
+    <p>তোমার পড়ার জায়গাটি প্রস্তুত। নিচের বোতামে চাপ দিলে বইয়ের এমবেডেড রিডার এই পেজের মধ্যেই খুলবে।</p>
+    <button class="btn primary" id="openReader">বই খুলে পড়ো ↗</button>
+   </div>
+   <iframe class="hidden" id="bookFrame" title="অপেক্ষা — embedded SlideShare reader" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <div class="reader-note"><span>রিডারটি তৃতীয় পক্ষের SlideShare থেকে এমবেড করা।</span><span>EARENDEL · PRIVATE READING SPACE</span></div>
+ </section>
+ <section class="quote-card"><span class="mark">“</span><p>কিছু গল্প পড়া শেষ হলেও, তাদের অনুভূতি অনেকক্ষণ থেকে যায়।</p><small>A QUIET MOMENT WITH LITERATURE</small></section>
 </main>
-<footer>© 2026 EARENDEL — A WORLD BEYOND WORDS.</footer>
+<footer class="site-foot">© 2026 EARENDEL — A WORLD BEYOND WORDS.</footer>
 <script>
-const warmBtn=document.getElementById('warmBtn');
-const focusBtn=document.getElementById('focusBtn');
-const fullBtn=document.getElementById('fullBtn');
-const viewerWrap=document.getElementById('viewerWrap');
-warmBtn.addEventListener('click',()=>{
- const active=document.body.classList.toggle('warm');
- warmBtn.setAttribute('aria-pressed',String(active));
- warmBtn.textContent=active?'☾ স্বাভাবিক আলো':'☼ উষ্ণ আলো';
-});
-focusBtn.addEventListener('click',()=>{
- const active=document.body.classList.toggle('immersive');
- focusBtn.setAttribute('aria-pressed',String(active));
- focusBtn.textContent=active?'↙ স্বাভাবিক দৃশ্য':'⛶ নিরিবিলি পড়া';
-});
-fullBtn.addEventListener('click',async()=>{
- try{
-  if(document.fullscreenElement){await document.exitFullscreen();}
-  else if(viewerWrap.requestFullscreen){await viewerWrap.requestFullscreen();}
-  else{document.getElementById('bookFrame').requestFullscreen?.();}
- }catch(error){fullBtn.textContent='ব্রাউজার পূর্ণপর্দা সমর্থন করছে না';}
-});
-document.addEventListener('fullscreenchange',()=>{
- fullBtn.textContent=document.fullscreenElement?'✕ পূর্ণপর্দা বন্ধ':'⛶ বড় পর্দা';
-});
+const frame=document.getElementById('bookFrame'),placeholder=document.getElementById('readerPlaceholder'),readerFrame=document.getElementById('readerFrame');
+const readerUrl='https://www.slideshare.net/slideshow/embed_code/260428577';
+function openBookReader(){placeholder.classList.add('hidden');frame.classList.remove('hidden');if(!frame.src)frame.src=readerUrl;document.getElementById('reader').scrollIntoView({behavior:'smooth',block:'start'});}
+document.getElementById('startReading').addEventListener('click',openBookReader);
+document.getElementById('openReader').addEventListener('click',openBookReader);
+document.getElementById('coverAgain').addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'});});
+document.getElementById('warmBtn').addEventListener('click',e=>{const on=document.body.classList.toggle('warm');e.currentTarget.setAttribute('aria-pressed',String(on));e.currentTarget.textContent=on?'☾ রাতের আলো':'☼ উষ্ণ আলো';});
+document.getElementById('focusBtn').addEventListener('click',e=>{const on=document.body.classList.toggle('immersive');e.currentTarget.setAttribute('aria-pressed',String(on));e.currentTarget.textContent=on?'↙ স্বাভাবিক দৃশ্য':'⛶ নিরিবিলি মোড';});
+document.getElementById('fullBtn').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await readerFrame.requestFullscreen();}catch(e){document.getElementById('fullBtn').textContent='ব্রাউজার ফুলস্ক্রিন অনুমতি দেয়নি';}});
+document.addEventListener('fullscreenchange',()=>{document.getElementById('fullBtn').textContent=document.fullscreenElement?'✕ ফুলস্ক্রিন বন্ধ':'⛶ ফুলস্ক্রিন';});
+document.getElementById('reloadBtn').addEventListener('click',()=>{if(frame.src){frame.src=readerUrl;}else openBookReader();});
 </script>
 </body>
 </html>
