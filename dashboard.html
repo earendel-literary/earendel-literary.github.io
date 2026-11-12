@@ -40,6 +40,57 @@
    <p id="listMessage" class="notice"></p>
   </section>
  </div>
+
+ <section class="panel" id="bookManager" style="margin-top:22px">
+  <h2>Digital Book Library</h2>
+  <p class="meta" style="margin:-8px 0 18px">Manage complete books and their chapters separately from ordinary posts.</p>
+  <div class="layout">
+   <section>
+    <h2 id="bookFormHeading">Add a new book</h2>
+    <form id="bookForm">
+     <input type="hidden" id="bookId">
+     <div class="field"><label for="bookTitle">Book title *</label><input id="bookTitle" maxlength="180" required placeholder="বইয়ের নাম"></div>
+     <div class="row">
+      <div class="field"><label for="bookAuthor">Author *</label><input id="bookAuthor" maxlength="160" required placeholder="লেখকের নাম"></div>
+      <div class="field"><label for="bookStatus">Status</label><select id="bookStatus"><option value="draft">Save as draft</option><option value="published">Publish</option></select></div>
+     </div>
+     <div class="field"><label for="bookSlug">Book URL slug *</label><input id="bookSlug" maxlength="180" required placeholder="book-title"></div>
+     <div class="field"><label for="bookDescription">Book description</label><textarea id="bookDescription" placeholder="বইটি সম্পর্কে সংক্ষিপ্ত পরিচিতি"></textarea></div>
+     <div class="field"><label for="bookCover">Cover image</label><input id="bookCover" type="file" accept="image/png,image/jpeg,image/webp,image/gif"><div class="meta">JPG, PNG, WEBP or GIF · maximum 5 MB</div><div id="bookImageStatus" class="meta"></div></div>
+     <div class="actions"><button class="btn primary" type="submit" id="saveBookBtn">Save book</button><button class="btn" type="button" id="clearBookBtn">Clear</button></div>
+     <p id="bookMessage" class="notice" role="status"></p>
+    </form>
+   </section>
+   <section>
+    <h2>Your books</h2>
+    <input id="bookSearch" class="search" placeholder="Search books…">
+    <div id="booksList"><p class="empty">Loading books…</p></div>
+   </section>
+  </div>
+  <div style="border-top:1px solid var(--line);margin:25px 0"></div>
+  <h2>Chapter Manager</h2>
+  <div class="layout">
+   <section>
+    <form id="chapterForm">
+     <input type="hidden" id="chapterId">
+     <div class="field"><label for="chapterBook">Select book *</label><select id="chapterBook" required><option value="">Choose a book</option></select></div>
+     <div class="row">
+      <div class="field"><label for="chapterNumber">Chapter number *</label><input id="chapterNumber" type="number" min="1" step="1" required placeholder="1"></div>
+      <div class="field"><label for="chapterStatus">Status</label><select id="chapterStatus"><option value="draft">Save as draft</option><option value="published">Publish</option></select></div>
+     </div>
+     <div class="field"><label for="chapterTitle">Chapter title *</label><input id="chapterTitle" maxlength="180" required placeholder="প্রথম অধ্যায়"></div>
+     <div class="field"><label for="chapterContent">Chapter content *</label><textarea id="chapterContent" required placeholder="অধ্যায়ের সম্পূর্ণ লেখা…" style="min-height:230px"></textarea></div>
+     <div class="actions"><button class="btn primary" type="submit" id="saveChapterBtn">Save chapter</button><button class="btn" type="button" id="clearChapterBtn">Clear</button></div>
+     <p id="chapterMessage" class="notice" role="status"></p>
+    </form>
+   </section>
+   <section>
+    <h2>Chapters</h2>
+    <p class="meta">Choose a book to see its chapters.</p>
+    <div id="chaptersList"><p class="empty">Select a book first.</p></div>
+   </section>
+  </div>
+ </section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script>
 <script>
@@ -56,6 +107,7 @@ async function boot(){
  const {data:profile,error:pe}=await db.from('profiles').select('is_admin').eq('id',user.id).single();
  if(pe||!profile?.is_admin){await db.auth.signOut();alert('Admin permission required.');location.href='admin.html';return}
  await loadPosts();
+ await loadBooks();
 }
 async function loadPosts(){
  $('postsList').innerHTML='<p class="empty">Loading…</p>';
@@ -106,6 +158,103 @@ $('postsList').addEventListener('click',async e=>{
 $('resetBtn').addEventListener('click',clearForm);
 ['search','filterCategory','filterStatus'].forEach(id=>$(id).addEventListener('input',renderPosts));
 $('logout').addEventListener('click',async()=>{await db.auth.signOut();location.href='admin.html'});
+
+function slugify(value){
+ return value.toLowerCase().trim().normalize('NFKD')
+  .replace(/[\\u0300-\\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'book-'+Date.now();
+}
+let allBooks=[],allChapters=[];
+async function loadBooks(){
+ $('booksList').innerHTML='<p class="empty">Loading…</p>';
+ const {data,error}=await db.from('books').select('*').order('created_at',{ascending:false});
+ if(error){$('booksList').innerHTML='<p class="empty">Could not load books: '+safe(error.message)+'</p>';return}
+ allBooks=data||[];
+ const select=$('chapterBook'),previous=select.value;
+ select.innerHTML='<option value="">Choose a book</option>'+allBooks.map(b=>'<option value="'+safe(b.id)+'">'+safe(b.title)+'</option>').join('');
+ if(allBooks.some(b=>b.id===previous))select.value=previous;
+ renderBooks();
+ if(select.value)await loadChapters(select.value);
+}
+function renderBooks(){
+ const q=$('bookSearch').value.toLowerCase();
+ const list=allBooks.filter(b=>(b.title||'').toLowerCase().includes(q)||(b.author||'').toLowerCase().includes(q));
+ if(!list.length){$('booksList').innerHTML='<p class="empty">No books yet. Add your first book.</p>';return}
+ $('booksList').innerHTML=list.map(b=>'<article class="post">'+(b.cover_image_url?'<img class="thumb" src="'+safe(b.cover_image_url)+'" alt="">':'')+'<h3>'+safe(b.title)+'</h3><div class="meta">By '+safe(b.author)+' <span class="pill">'+safe(b.status)+'</span></div><div class="post-actions"><button class="btn" data-book-edit="'+safe(b.id)+'">Edit</button><button class="btn" data-book-chapters="'+safe(b.id)+'">Chapters</button><button class="btn danger" data-book-delete="'+safe(b.id)+'">Delete</button></div></article>').join('');
+}
+function clearBookForm(){
+ $('bookForm').reset();$('bookId').value='';$('bookFormHeading').textContent='Add a new book';$('saveBookBtn').textContent='Save book';$('bookImageStatus').textContent='';$('bookMessage').textContent='';
+}
+$('bookTitle').addEventListener('input',()=>{if(!$('bookId').value)$('bookSlug').value=slugify($('bookTitle').value)});
+$('bookForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('saveBookBtn').disabled=true;$('bookMessage').textContent='Saving book…';
+ try{
+  const id=$('bookId').value||crypto.randomUUID(),old=allBooks.find(b=>b.id===id);
+  let imageUrl=old?.cover_image_url||null;const file=$('bookCover').files[0];
+  if(file){
+   if(file.size>5*1024*1024)throw new Error('Image must be 5 MB or smaller.');
+   if(!['image/jpeg','image/png','image/webp','image/gif'].includes(file.type))throw new Error('Please choose JPG, PNG, WEBP or GIF.');
+   const ext=file.name.split('.').pop().toLowerCase(),path=currentUser.id+'/books/'+id+'/'+Date.now()+'.'+ext;
+   const {error:upErr}=await db.storage.from('earendel-images').upload(path,file,{upsert:true,contentType:file.type});
+   if(upErr)throw upErr;
+   imageUrl=db.storage.from('earendel-images').getPublicUrl(path).data.publicUrl;
+  }
+  const status=$('bookStatus').value;
+  const payload={id,title:$('bookTitle').value.trim(),slug:$('bookSlug').value.trim(),author:$('bookAuthor').value.trim(),description:$('bookDescription').value.trim()||null,cover_image_url:imageUrl,status,updated_at:new Date().toISOString()};
+  const {error}=await db.from('books').upsert(payload,{onConflict:'id'});
+  if(error)throw error;
+  $('bookMessage').style.color='var(--green)';$('bookMessage').textContent='Book saved successfully.';
+  clearBookForm();await loadBooks();
+ }catch(err){$('bookMessage').style.color='var(--red)';$('bookMessage').textContent=err.message||'Could not save book.'}
+ finally{$('saveBookBtn').disabled=false}
+});
+$('booksList').addEventListener('click',async e=>{
+ const edit=e.target.closest('[data-book-edit]'),chapters=e.target.closest('[data-book-chapters]'),del=e.target.closest('[data-book-delete]');
+ if(edit){
+  const b=allBooks.find(x=>x.id===edit.dataset.bookEdit);if(!b)return;
+  $('bookId').value=b.id;$('bookTitle').value=b.title;$('bookSlug').value=b.slug;$('bookAuthor').value=b.author;$('bookDescription').value=b.description||'';$('bookStatus').value=b.status;$('bookFormHeading').textContent='Edit book';$('saveBookBtn').textContent='Update book';$('bookImageStatus').textContent=b.cover_image_url?'Current cover will be kept unless replaced.':'';window.scrollTo({top:$('bookManager').offsetTop,behavior:'smooth'});
+ }
+ if(chapters){$('chapterBook').value=chapters.dataset.bookChapters;await loadChapters(chapters.dataset.bookChapters);$('chapterForm').scrollIntoView({behavior:'smooth',block:'center'});}
+ if(del){
+  const b=allBooks.find(x=>x.id===del.dataset.bookDelete);if(!b||!confirm('Delete "'+b.title+'" and all its chapters? This cannot be undone.'))return;
+  const {error}=await db.from('books').delete().eq('id',b.id);
+  if(error){$('bookMessage').textContent=error.message;return}
+  $('bookMessage').textContent='Book deleted.';await loadBooks();
+ }
+});
+$('clearBookBtn').addEventListener('click',clearBookForm);
+$('bookSearch').addEventListener('input',renderBooks);
+async function loadChapters(bookId){
+ $('chaptersList').innerHTML='<p class="empty">Loading chapters…</p>';
+ const {data,error}=await db.from('chapters').select('*').eq('book_id',bookId).order('chapter_number',{ascending:true});
+ if(error){$('chaptersList').innerHTML='<p class="empty">Could not load chapters: '+safe(error.message)+'</p>';return}
+ allChapters=data||[];
+ if(!allChapters.length){$('chaptersList').innerHTML='<p class="empty">No chapters in this book yet.</p>';return}
+ $('chaptersList').innerHTML=allChapters.map(c=>'<article class="post"><h3>'+safe(c.chapter_number)+'. '+safe(c.title)+'</h3><div class="meta"><span class="pill">'+safe(c.status)+'</span></div><div class="post-actions"><button class="btn" data-chapter-edit="'+safe(c.id)+'">Edit</button><button class="btn danger" data-chapter-delete="'+safe(c.id)+'">Delete</button></div></article>').join('');
+}
+function clearChapterForm(){
+ $('chapterForm').reset();$('chapterId').value='';$('chapterMessage').textContent='';
+}
+$('chapterForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('saveChapterBtn').disabled=true;$('chapterMessage').textContent='Saving chapter…';
+ try{
+  const id=$('chapterId').value||crypto.randomUUID(),bookId=$('chapterBook').value;
+  if(!bookId)throw new Error('Please select a book.');
+  const payload={id,book_id:bookId,chapter_number:Number($('chapterNumber').value),title:$('chapterTitle').value.trim(),content:$('chapterContent').value.trim(),status:$('chapterStatus').value,updated_at:new Date().toISOString()};
+  const {error}=await db.from('chapters').upsert(payload,{onConflict:'id'});
+  if(error)throw error;
+  $('chapterMessage').style.color='var(--green)';$('chapterMessage').textContent='Chapter saved successfully.';
+  clearChapterForm();$('chapterBook').value=bookId;await loadChapters(bookId);
+ }catch(err){$('chapterMessage').style.color='var(--red)';$('chapterMessage').textContent=err.message||'Could not save chapter.'}
+ finally{$('saveChapterBtn').disabled=false}
+});
+$('chaptersList').addEventListener('click',async e=>{
+ const edit=e.target.closest('[data-chapter-edit]'),del=e.target.closest('[data-chapter-delete]');
+ if(edit){const c=allChapters.find(x=>x.id===edit.dataset.chapterEdit);if(!c)return;$('chapterId').value=c.id;$('chapterBook').value=c.book_id;$('chapterNumber').value=c.chapter_number;$('chapterTitle').value=c.title;$('chapterContent').value=c.content;$('chapterStatus').value=c.status;$('chapterMessage').textContent='Editing chapter '+c.chapter_number;}
+ if(del){const c=allChapters.find(x=>x.id===del.dataset.chapterDelete);if(!c||!confirm('Delete chapter "'+c.title+'"?'))return;const {error}=await db.from('chapters').delete().eq('id',c.id);if(error){$('chapterMessage').textContent=error.message;return}$('chapterMessage').textContent='Chapter deleted.';await loadChapters(c.book_id);}
+});
+$('chapterBook').addEventListener('change',async()=>{clearChapterForm();if($('chapterBook').value)await loadChapters($('chapterBook').value);else $('chaptersList').innerHTML='<p class="empty">Select a book first.</p>'});
+$('clearChapterBtn').addEventListener('click',clearChapterForm);
+
 boot();
 </script>
 </body>
