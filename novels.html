@@ -418,144 +418,10 @@ footer{background:#050505;padding:40px 0 22px}
 
     <div class="toolbar">
       <input class="search" id="search" type="search" placeholder="বইয়ের নাম বা বিষয় দিয়ে খুঁজুন...">
-      <div class="filters">
-        <button class="filter active" data-filter="all">All Books</button>
-        <button class="filter" data-filter="romance">Romance</button>
-        <button class="filter" data-filter="thriller">Thriller</button>
-        <button class="filter" data-filter="fiction">Fiction</button>
-        <button class="filter" data-filter="drama">Drama</button>
-      </div>
+      <div class="filters"><button class="filter active" data-filter="all">All Books</button></div>
     </div>
 
-    <div class="book-grid" id="bookGrid">
-
-      <article class="book-card reveal" data-category="romance">
-        <div class="book-visual">
-          <div class="mini-book" style="background:linear-gradient(145deg,#59352c,#1a100e)">
-            <div class="mini-book-inner">
-              <small>EARENDEL</small>
-              <h3>শেষ<br>বিকেল</h3>
-              <span>A NOVEL</span>
-            </div>
-          </div>
-        </div>
-        <div class="book-details">
-          <div class="book-category">ROMANCE</div>
-          <h3>শেষ বিকেল</h3>
-          <p>কিছু বিকেল শেষ হয়, কিন্তু তার গল্প শেষ হয় না।</p>
-          <div class="book-bottom">
-            <span>BOOK 01</span>
-            <button class="read-btn" data-book="0">DETAILS ↗</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="book-card reveal" data-category="thriller">
-        <div class="book-visual">
-          <div class="mini-book" style="background:linear-gradient(145deg,#263b38,#080e0d)">
-            <div class="mini-book-inner">
-              <small>EARENDEL</small>
-              <h3>অন্ধকারের<br>পাশে</h3>
-              <span>A NOVEL</span>
-            </div>
-          </div>
-        </div>
-        <div class="book-details">
-          <div class="book-category">THRILLER</div>
-          <h3>অন্ধকারের পাশে</h3>
-          <p>একটি রহস্য, কিছু অজানা সত্য এবং এক অদ্ভুত রাত।</p>
-          <div class="book-bottom">
-            <span>BOOK 02</span>
-            <button class="read-btn" data-book="1">DETAILS ↗</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="book-card reveal" data-category="fiction">
-        <div class="book-visual">
-          <div class="mini-book" style="background:linear-gradient(145deg,#423a62,#14111f)">
-            <div class="mini-book-inner">
-              <small>EARENDEL</small>
-              <h3>অন্য<br>পৃথিবী</h3>
-              <span>A NOVEL</span>
-            </div>
-          </div>
-        </div>
-        <div class="book-details">
-          <div class="book-category">FICTION</div>
-          <h3>অন্য পৃথিবী</h3>
-          <p>কল্পনার সীমানা ছাড়িয়ে এক অজানা জগতের যাত্রা।</p>
-          <div class="book-bottom">
-            <span>BOOK 03</span>
-            <button class="read-btn" data-book="2">DETAILS ↗</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="book-card reveal" data-category="drama">
-        <div class="book-visual">
-          <div class="mini-book" style="background:linear-gradient(145deg,#655035,#1c140b)">
-            <div class="mini-book-inner">
-              <small>EARENDEL</small>
-              <h3>নীরব<br>অভিমান</h3>
-              <span>A NOVEL</span>
-            </div>
-          </div>
-        </div>
-        <div class="book-details">
-          <div class="book-category">DRAMA</div>
-          <h3>নীরব অভিমান</h3>
-          <p>কিছু অভিমান শব্দহীন, অথচ তার গভীরতা অনেক বেশি।</p>
-          <div class="book-bottom">
-            <span>BOOK 04</span>
-            <button class="read-btn" data-book="3">DETAILS ↗</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="book-card reveal" data-category="romance">
-        <div class="book-visual">
-          <div class="mini-book" style="background:linear-gradient(145deg,#69404b,#1d1017)">
-            <div class="mini-book-inner">
-              <small>EARENDEL</small>
-              <h3>তোমার<br>অপেক্ষায়</h3>
-              <span>A NOVEL</span>
-            </div>
-          </div>
-        </div>
-        <div class="book-details">
-          <div class="book-category">ROMANCE</div>
-          <h3>তোমার অপেক্ষায়</h3>
-          <p>অপেক্ষা, ভালোবাসা আর ফিরে পাওয়ার এক গল্প।</p>
-          <div class="book-bottom">
-            <span>BOOK 05</span>
-            <button class="read-btn" data-book="4">DETAILS ↗</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="book-card reveal" data-category="fiction">
-        <div class="book-visual">
-          <div class="mini-book" style="background:linear-gradient(145deg,#384b58,#10191f)">
-            <div class="mini-book-inner">
-              <small>EARENDEL</small>
-              <h3>শেষ<br>অধ্যায়</h3>
-              <span>A NOVEL</span>
-            </div>
-          </div>
-        </div>
-        <div class="book-details">
-          <div class="book-category">FICTION</div>
-          <h3>শেষ অধ্যায়</h3>
-          <p>শেষ বলে কিছু নেই, প্রতিটি শেষের পরেই নতুন শুরু।</p>
-          <div class="book-bottom">
-            <span>BOOK 06</span>
-            <button class="read-btn" data-book="5">DETAILS ↗</button>
-          </div>
-        </div>
-      </article>
-
-    </div>
+    <div class="book-grid" id="bookGrid"><p style="color:var(--muted);padding:25px 0">Loading the EARENDEL bookshelf…</p></div>
 
     <div class="empty" id="empty">এই নামে কোনো বই পাওয়া যায়নি। অন্যভাবে খুঁজে দেখো।</div>
   </div>
@@ -580,6 +446,7 @@ footer{background:#050505;padding:40px 0 22px}
     <h2 id="modalTitle"></h2>
     <div class="modal-meta" id="modalMeta"></div>
     <div class="modal-description" id="modalDescription"></div>
+    <div id="dbBookChapters" style="margin-top:25px"></div>
     <div class="modal-footer">
       <span>A WORLD BEYOND WORDS</span>
       <button class="copy-btn" id="copyBook">COPY DETAILS</button>
@@ -796,6 +663,55 @@ const observer=new IntersectionObserver(entries=>{
 
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 </script>
+
+
+
+/* EARENDEL DATABASE BOOKS + CHAPTER READER */
+(async function loadEarendelLibrary(){
+ const grid=document.getElementById('bookGrid');
+ const empty=document.getElementById('empty');
+ const searchBox=document.getElementById('search');
+ const dbReady=window.supabase&&window.EARENDEL_SUPABASE_URL&&window.EARENDEL_SUPABASE_ANON_KEY;
+ if(!dbReady){grid.innerHTML='<p style="color:var(--muted)">The book library is temporarily unavailable.</p>';return;}
+ const db=window.supabase.createClient(window.EARENDEL_SUPABASE_URL,window.EARENDEL_SUPABASE_ANON_KEY);
+ const {data:books,error}=await db.from('books').select('id,title,slug,author,description,cover_image_url,created_at').eq('status','published').order('created_at',{ascending:false});
+ if(error){console.error('Could not load EARENDEL books:',error.message);grid.innerHTML='<p style="color:var(--muted)">বইগুলো এখন লোড করা যাচ্ছে না। পরে আবার চেষ্টা করো।</p>';return;}
+ if(!books||!books.length){grid.innerHTML='<p style="color:var(--muted);padding:25px 0">এখনো কোনো বই প্রকাশিত হয়নি। নতুন বই শিগগিরই যুক্ত হবে।</p>';if(empty)empty.style.display='none';return;}
+ grid.innerHTML='';
+ books.forEach((book,index)=>{
+  const card=document.createElement('article');card.className='book-card reveal';card.dataset.search=(book.title+' '+book.author+' '+(book.description||'')).toLowerCase();
+  const visual=document.createElement('div');visual.className='book-visual';
+  if(book.cover_image_url){const img=document.createElement('img');img.src=book.cover_image_url;img.alt=book.title+' cover';img.loading='lazy';img.style.cssText='width:100%;height:100%;object-fit:contain';visual.appendChild(img);}
+  else {const cover=document.createElement('div');cover.className='mini-book';cover.style.background='linear-gradient(145deg,#59452b,#15100b)';cover.innerHTML='<div class="mini-book-inner"><small>EARENDEL</small><h3></h3><span>A NOVEL</span></div>';cover.querySelector('h3').textContent=book.title;visual.appendChild(cover);}
+  const details=document.createElement('div');details.className='book-details';
+  const author=document.createElement('div');author.className='book-category';author.textContent='BY '+book.author;
+  const title=document.createElement('h3');title.textContent=book.title;
+  const desc=document.createElement('p');desc.textContent=book.description||'একটি নতুন সাহিত্যিক যাত্রা।';
+  const bottom=document.createElement('div');bottom.className='book-bottom';
+  const serial=document.createElement('span');serial.textContent='BOOK '+String(index+1).padStart(2,'0');
+  const btn=document.createElement('button');btn.className='read-btn';btn.textContent='READ BOOK ↗';btn.addEventListener('click',()=>openDatabaseBook(book,db));
+  bottom.append(serial,btn);details.append(author,title,desc,bottom);card.append(visual,details);grid.appendChild(card);
+ });
+ const filterBooksFromDb=()=>{const q=searchBox.value.trim().toLowerCase();let n=0;grid.querySelectorAll('.book-card').forEach(card=>{const show=card.dataset.search.includes(q);card.style.display=show?'block':'none';if(show)n++;});if(empty)empty.style.display=n?'none':'block';};
+ searchBox.addEventListener('input',filterBooksFromDb);
+ document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));btn.classList.add('active');filterBooksFromDb();}));
+ function safeText(el,value){el.textContent=value||'';}
+ async function openDatabaseBook(book,client){
+  currentBook={title:book.title,category:'BY '+book.author,description:book.description||''};
+  safeText(modalTitle,book.title);safeText(modalMeta,'BY '+book.author+' · EARENDEL DIGITAL LIBRARY');safeText(modalDescription,book.description||'এই বইয়ের অধ্যায়গুলো নিচে পড়তে পারবে।');
+  const chapterBox=document.getElementById('dbBookChapters');chapterBox.innerHTML='<p style="color:var(--gold);font-size:12px">অধ্যায়গুলো লোড হচ্ছে…</p>';
+  modal.classList.add('show');document.body.style.overflow='hidden';
+  const {data:chapters,error:chapterError}=await client.from('chapters').select('id,chapter_number,title,content').eq('book_id',book.id).eq('status','published').order('chapter_number',{ascending:true});
+  if(chapterError){chapterBox.textContent='অধ্যায়গুলো লোড করা যায়নি।';return;}
+  if(!chapters||!chapters.length){chapterBox.textContent='এই বইয়ের অধ্যায় এখনো প্রকাশিত হয়নি।';return;}
+  chapterBox.innerHTML='<div style="color:var(--gold);font-size:12px;letter-spacing:2px;margin-bottom:12px">TABLE OF CONTENTS</div>';
+  chapters.forEach(ch=>{
+   const btn=document.createElement('button');btn.type='button';btn.textContent='অধ্যায় '+ch.chapter_number+' — '+ch.title;btn.style.cssText='display:block;width:100%;text-align:left;padding:12px;margin:7px 0;background:#17130d;border:1px solid rgba(200,164,93,.25);color:#ead5a0;cursor:pointer;font:13px inherit';
+   btn.addEventListener('click',()=>{modalTitle.textContent=book.title+' — '+ch.title;modalMeta.textContent='অধ্যায় '+ch.chapter_number+' · '+book.author;modalDescription.textContent=ch.content;chapterBox.scrollIntoView({block:'nearest',behavior:'smooth'});});
+   chapterBox.appendChild(btn);
+  });
+ }
+})();
 
 
 <!-- EARENDEL LIVE PUBLISHING -->
