@@ -664,6 +664,12 @@ const observer=new IntersectionObserver(entries=>{
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
 
+
+
+<!-- EARENDEL LIVE PUBLISHING -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
 /* EARENDEL DATABASE BOOKS + CHAPTER READER */
 (async function loadEarendelLibrary(){
  const grid=document.getElementById('bookGrid');
@@ -710,10 +716,7 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
   });
  }
 })();
-
-<!-- EARENDEL LIVE PUBLISHING -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config.js"></script>
+</script>
 <script src="public-posts.js"></script>
 </body>
 </html>
